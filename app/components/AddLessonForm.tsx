@@ -49,8 +49,7 @@ const CreateSummaryForm = ({ student }: any) => {
       }
     },
     onSuccess: (data) => {
-      console.log(data);
-      // router.push("/");
+      router.push("/");
     },
     onError: (err: any) => {
       if (err.response.status === 403) {

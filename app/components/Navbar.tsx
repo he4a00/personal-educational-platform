@@ -34,7 +34,6 @@ const Navbar = () => {
   //   userInfo = JSON.parse(user);
   // }, []);
 
-  console.log(user);
   const loggedIn = !!user;
 
   return (

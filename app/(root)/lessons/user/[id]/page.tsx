@@ -38,9 +38,6 @@ const UserUnlockedLessons = () => {
 
   const { user }: any = useUserContext();
 
-  console.log(user?.user?._id);
-  console.log(id);
-
   if (user?.user?._id !== id) {
     redirect("/");
   }

@@ -37,12 +37,9 @@ const SignUp = () => {
       }
     },
     onSuccess: (data) => {
-      console.log(data);
       redirect("/");
     },
     onError: (err: any) => {
-      console.log(err.response.status);
-
       if (err.response.status === 409) {
         toast({
           title: "هناك مستخدم بالفعل لهذه البيانات",

@@ -40,8 +40,7 @@ const UnlockLesson = () => {
       }
     },
     onSuccess: (data) => {
-      console.log(data);
-      // router.push("/");
+      router.push("/");
     },
     onError: (err: any) => {
       if (err.response && err.response.status === 403) {

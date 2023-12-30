@@ -36,8 +36,6 @@ const UnlockedLesson = () => {
     },
   });
 
-  console.log(unlockedLesson);
-
   if (!unlockedLesson) {
     return (
       <div className="w-full h-full flex items-center justify-center">

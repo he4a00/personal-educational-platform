@@ -8,7 +8,8 @@ if (typeof window !== "undefined") {
 }
 
 const api = axios.create({
-  baseURL: "http://localhost:4040/api/",
+  // baseURL: "http://localhost:4040/api/",
+  baseURL: "https://personal-educational-platform-api.onrender.com/api/",
   withCredentials: true,
   headers: {
     Authorization: parsedToken ? `Bearer ${parsedToken}` : undefined,

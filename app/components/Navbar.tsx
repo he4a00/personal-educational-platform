@@ -23,17 +23,6 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  // let loggedIn: boolean = false;
-  // let userInfo: any = null;
-
-  // useEffect(() => {
-  //   const user: any = localStorage.getItem("user");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   loggedIn = !!user; // Check if user exists
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   userInfo = JSON.parse(user);
-  // }, []);
-
   const loggedIn = !!user;
 
   return (
@@ -63,12 +52,20 @@ const Navbar = () => {
           </button>
           <div className="flex flex-col p-4 gap-4 bg-gradient-to-r from-cyan-500 to-blue-500">
             {!loggedIn ? (
-              <Link href="/sign-in">
-                <Button className="flex gap-2 p-7 w-full">
-                  تسجيل الدخول
-                  <UserRoundCheck />
-                </Button>
-              </Link>
+              <>
+                <Link href="/sign-in">
+                  <Button className="flex gap-2 p-7 w-full">
+                    تسجيل الدخول
+                    <UserRoundCheck />
+                  </Button>
+                </Link>
+                <Link href="/sign-up">
+                  <Button className="flex gap-2 p-7 w-full">
+                    انشاء حساب
+                    <UserRoundCheck />
+                  </Button>
+                </Link>
+              </>
             ) : (
               <>
                 {/* Logout button if logged in */}

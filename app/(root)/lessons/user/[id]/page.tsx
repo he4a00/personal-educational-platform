@@ -8,6 +8,7 @@ import algebra from "../../../../images/algebra.jpg";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
+import { useUserContext } from "@/app/context/UserContext";
 
 interface UserData {
   _id: string;
@@ -35,11 +36,13 @@ interface UserData {
 const UserUnlockedLessons = () => {
   const { id } = useParams<{ id: string }>();
 
-  const user: any = localStorage.getItem("user");
-  const userInfo = JSON.parse(user);
+  const { user }: any = useUserContext();
 
-  if (userInfo?.user?._id !== id) {
-    [redirect("/")];
+  console.log(user?.user?._id);
+  console.log(id);
+
+  if (user?.user?._id !== id) {
+    redirect("/");
   }
 
   const {

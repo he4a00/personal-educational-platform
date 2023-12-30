@@ -11,17 +11,16 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, loading }: any = useUserContext();
+  const { login, loading, user }: any = useUserContext();
 
   const handleLogin = () => {
     login(email, password);
   };
 
-  const user = localStorage.getItem("user");
-
   if (user) {
     redirect("/");
   }
+
   return (
     <div
       style={{

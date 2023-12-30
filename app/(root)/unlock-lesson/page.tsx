@@ -1,16 +1,16 @@
 "use client";
 import UnlockForAll from "@/app/components/UnlockForAll";
 import UnlockLesson from "@/app/components/UnlockLesson";
+import { useUserContext } from "@/app/context/UserContext";
 import { redirect } from "next/navigation";
 
 const AddLesson = () => {
-  const user: any = localStorage.getItem("user");
-  const userInfo = JSON.parse(user);
+  const { user }: any = useUserContext();
   if (!user) {
     redirect("/");
   }
 
-  if (userInfo.user.type !== "teacher") {
+  if (user?.user?.type !== "teacher") {
     redirect("/");
   }
   return (

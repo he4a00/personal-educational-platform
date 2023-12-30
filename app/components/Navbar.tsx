@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Book,
@@ -17,15 +17,25 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { logout }: any = useUserContext();
+  const { logout, user }: any = useUserContext();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const user: any = localStorage.getItem("user");
-  const isLoggedIn = !!user; // Check if user exists
-  const userInfo = JSON.parse(user);
+  // let loggedIn: boolean = false;
+  // let userInfo: any = null;
+
+  // useEffect(() => {
+  //   const user: any = localStorage.getItem("user");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   loggedIn = !!user; // Check if user exists
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   userInfo = JSON.parse(user);
+  // }, []);
+
+  console.log(user);
+  const loggedIn = !!user;
 
   return (
     <div className="container">
@@ -53,7 +63,7 @@ const Navbar = () => {
             &times;
           </button>
           <div className="flex flex-col p-4 gap-4 bg-gradient-to-r from-cyan-500 to-blue-500">
-            {!isLoggedIn ? (
+            {!loggedIn ? (
               <Link href="/sign-in">
                 <Button className="flex gap-2 p-7 w-full">
                   تسجيل الدخول
@@ -71,7 +81,7 @@ const Navbar = () => {
                   تسجيل الخروج
                   <LogOut />
                 </Button>
-                <Link href={`/lessons/user/${userInfo.user._id}`}>
+                <Link href={`/lessons/user/${user?.user?._id}`}>
                   <Button
                     variant="destructive"
                     className="flex gap-2 p-7 w-full"
@@ -82,7 +92,7 @@ const Navbar = () => {
                 </Link>
 
                 {/* Render 'Add Lesson' button if the user is a teacher */}
-                {userInfo?.user?.type === "teacher" && (
+                {user?.user?.type === "teacher" && (
                   <>
                     <Link href="/add-lesson">
                       <Button
@@ -116,7 +126,7 @@ const Navbar = () => {
         {/* Logo */}
 
         {/* Buttons */}
-        {isLoggedIn ? (
+        {loggedIn ? (
           <div className="flex gap-2">
             <Button
               variant="destructive"
@@ -126,13 +136,13 @@ const Navbar = () => {
               تسجيل الخروج
               <LogOut />
             </Button>
-            <Link href={`/lessons/user/${userInfo.user._id}`}>
+            <Link href={`/lessons/user/${user?.user?._id}`}>
               <Button className="flex gap-2 p-7 w-full">
                 الدروس
                 <Book />
               </Button>
             </Link>
-            {userInfo?.user?.type === "teacher" && (
+            {user?.user?.type === "teacher" && (
               <>
                 <Link href="/add-lesson">
                   <Button className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black">

@@ -3,10 +3,8 @@
 import api from "@/app/utils/api";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import Link from "next/link";
 import algebra from "../../../images/algebra.jpg";
 import { useParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
 interface LessonData {

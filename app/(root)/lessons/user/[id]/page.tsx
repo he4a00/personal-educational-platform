@@ -84,8 +84,8 @@ const UserUnlockedLessons = () => {
                 className=" transition-all duration-500 hover:rotate-2 rounded-lg"
               />
 
-              <div className="flex flex-col font-mono items-center bg-white opacity-90 p-5 shadow-lg w-[380px] md:w-[550px] relative bottom-5 rounded-lg">
-                <h1 className="text-xl font-semibold p-2 font-mono">
+              <div className="flex flex-col items-center bg-white opacity-90 p-5 shadow-lg w-[380px] md:w-[550px] relative bottom-5 rounded-lg">
+                <h1 className="text-xl font-semibold p-2">
                   {lessonData.lessonId.title}
                 </h1>
                 <p className="p-2 font-semibold">{lessonData.lessonId.desc}</p>

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Readex_Pro } from "next/font/google";
 import "../globals.css";
 import QueryProvider from "../components/QueryProvider";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "../components/Navbar";
 import { UserProvider } from "../context/UserContext";
-import Footer from "../components/Footer";
 
-const inter = Rubik({ subsets: ["latin"] });
+const inter = Readex_Pro({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
   title: "منصة الرياضيات",

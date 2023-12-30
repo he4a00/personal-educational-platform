@@ -13,7 +13,7 @@ const Classes = () => {
           className="flex flex-col items-center justify-center p-10
       "
         >
-          <h1 className="text-5xl font-bold text-gray-900 text-center font-mono p-2">
+          <h1 className="text-5xl font-bold text-gray-900 text-center p-2">
             الصفوف الدراسية
           </h1>
           <Image className="p-2" src={bag} alt="" width={150} height={150} />

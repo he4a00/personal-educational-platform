@@ -62,7 +62,7 @@ const ClassLessons = () => {
 
   return (
     <div className="flex items-center flex-col p-10">
-      <h2 className="text-3xl font-bold text-gray-800 dark:text-white font-mono">
+      <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
         الدروس الخاصة ب{classId}
       </h2>
       <div className="grid md:grid-cols-2 sm:grid-cols-1 grid-cols-1 md:gap-x-80 gap-9 p-8 rounded-lg">
@@ -77,10 +77,8 @@ const ClassLessons = () => {
                 className=" transition-all duration-500 hover:rotate-2 rounded-lg"
               />
 
-              <div className="flex flex-col font-mono items-center bg-white opacity-90 p-5 shadow-lg w-[370px] md:w-[550px] relative bottom-5 rounded-lg">
-                <h1 className="text-xl font-semibold p-2 font-mono">
-                  {lesson.title}
-                </h1>
+              <div className="flex flex-col items-center bg-white opacity-90 p-5 shadow-lg w-[370px] md:w-[550px] relative bottom-5 rounded-lg">
+                <h1 className="text-xl font-semibold p-2">{lesson.title}</h1>
                 <p className="p-2 font-semibold">{lesson.desc}</p>
                 <div className="flex flex-row gap-5">
                   <h4 className=" font-bold bg-red-300 p-3 rounded-lg">

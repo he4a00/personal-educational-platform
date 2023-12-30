@@ -39,7 +39,7 @@ const UnlockedLesson = () => {
   if (!unlockedLesson) {
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <h1>عذرا ، لا يوج اي دروس متاحة لك.</h1>
+        <h1 className="text-2xl font-bold">عذرا ، لا يوجد اي دروس متاحة لك.</h1>
       </div>
     );
   }
@@ -47,9 +47,7 @@ const UnlockedLesson = () => {
   return (
     <div className="flex flex-col items-center gap-10">
       <div className="flex flex-col gap-5">
-        <h1 className="text-3xl font-bold font-mono">
-          {unlockedLesson?.title}
-        </h1>
+        <h1 className="text-3xl font-bold">{unlockedLesson?.title}</h1>
       </div>
       <div>
         <ReactPlayer

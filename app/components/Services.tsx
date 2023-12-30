@@ -23,7 +23,7 @@ const Services = () => {
           className="flex flex-col items-center justify-center
       "
         >
-          <h1 className="text-4xl font-semibold text-gray-900 text-center font-mono p-2">
+          <h1 className="text-4xl font-semibold text-gray-900 text-center p-2">
             ما الذي ستقدمه المنصة لك ؟
           </h1>
           <Image
@@ -37,7 +37,7 @@ const Services = () => {
         <div className="grid md:grid-cols-3 grid-cols-1 gap-4 p-3">
           <div className="flex flex-col justify-center items-center">
             <Image src={book} alt="" width={150} height={150} />
-            <h1 className="text-2xl font-mono font-bold text-black p-5 bg-yellow-400 border-4 rounded-md opacity-70">
+            <h1 className="text-2xl font-bold text-black p-5 bg-yellow-400 border-4 rounded-md opacity-70">
               امتحانات مستمرة علي كل درس
             </h1>
           </div>
@@ -49,7 +49,7 @@ const Services = () => {
               height={150}
               className="animate-spin"
             />
-            <h1 className="text-2xl font-mono font-semibold text-black p-5 bg-yellow-400 border-4 rounded-md opacity-80">
+            <h1 className="text-2xl font-semibold text-black p-5 bg-yellow-400 border-4 rounded-md opacity-80">
               مراجعة الدروس بطريقة مستمرة
             </h1>
           </div>
@@ -61,7 +61,7 @@ const Services = () => {
               width={150}
               height={150}
             />
-            <h1 className="text-2xl font-mono font-semibold text-black p-5 bg-yellow-400 border-4 rounded-md opacity-70">
+            <h1 className="text-2xl font-semibold text-black p-5 bg-yellow-400 border-4 rounded-md opacity-70">
               واجبات مستمرة علي كل درس
             </h1>
           </div>

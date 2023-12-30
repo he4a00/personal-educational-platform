@@ -20,10 +20,10 @@ const Hero = () => {
         <h1 className="text-5xl font-bold font-mono text-gray-500">
           الاستاذ في الرياضيات
         </h1>
-        <h6 className="text-5xl font-semibold text-gray-500 p-3 font-mono">
+        <h6 className="md:text-5xl text-3xl font-semibold text-gray-500 p-3 font-mono">
           هاشم شكري
         </h6>
-        <p className="text-3xl font-semibold text-gray-500 p-3 font-mono">
+        <p className="md:text-3xl text-xl font-semibold text-gray-500 p-3 font-mono">
           منصة مختصة في الغوص في
           <br /> عالم الرياضيات
         </p>

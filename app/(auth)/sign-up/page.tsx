@@ -1,5 +1,6 @@
 "use client";
 
+import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -57,7 +58,7 @@ const SignUp = () => {
     },
   });
 
-  const user = localStorage.getItem("user");
+  const { user }: any = useUserContext();
 
   if (user) {
     redirect("/");

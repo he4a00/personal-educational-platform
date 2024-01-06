@@ -24,3 +24,27 @@ export const classesInfo = [
     desc: "جميع الدروس الخاصة بالصف الثالث الاعدادي",
   },
 ];
+
+export const sections = [
+  {
+    name: "جبر",
+  },
+  {
+    name: "هندسة",
+  },
+];
+
+export const units = [
+  {
+    name: "الاولي",
+  },
+  {
+    name: "الثانية",
+  },
+  {
+    name: "الثالثة",
+  },
+  {
+    name: "الرابعة",
+  },
+];

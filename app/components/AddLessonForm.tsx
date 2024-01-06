@@ -31,6 +31,7 @@ const CreateSummaryForm = ({ student }: any) => {
       price: "",
       isPaid: false,
       desc: "",
+      section: "",
     },
   });
 
@@ -70,6 +71,7 @@ const CreateSummaryForm = ({ student }: any) => {
     formData.append("desc", values.desc);
     formData.append("price", values.price);
     formData.append("classroom", values.classroom);
+    formData.append("section", values.classroom);
     createLesson(formData);
   }
 
@@ -174,6 +176,23 @@ const CreateSummaryForm = ({ student }: any) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold text-white">السعر</FormLabel>
+              <FormControl>
+                <Input
+                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  {...field}
+                />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="section"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="font-semibold text-white">اقسم</FormLabel>
               <FormControl>
                 <Input
                   className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"

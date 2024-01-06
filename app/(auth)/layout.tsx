@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "تسجيل الدخول",
+  description: "منصة الاستاذ هاشم شكري لمادة الرياضيات",
 };
 
 const inter = Rubik({ subsets: ["arabic"] });

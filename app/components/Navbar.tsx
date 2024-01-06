@@ -33,7 +33,9 @@ const Navbar = () => {
         <button onClick={toggleSidebar} className="p-2">
           {isOpen ? <ChevronsLeftRight /> : <MenuSquare />}
         </button>
-        <Image src={logo} width={150} height={150} alt="" />
+        <Link href="/">
+          <Image src={logo} width={150} height={150} alt="" />
+        </Link>
       </div>
 
       {/* Sidebar */}

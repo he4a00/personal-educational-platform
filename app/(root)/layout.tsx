@@ -10,6 +10,7 @@ const inter = Readex_Pro({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
   title: "منصة الرياضيات",
+  description: "منصة الاستاذ هاشم شكري لمادة الرياضيات",
 };
 
 export default function RootLayout({

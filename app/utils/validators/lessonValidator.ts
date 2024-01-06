@@ -8,4 +8,5 @@ export const LessonValidation = z.object({
   price: z.string(),
   isPaid: z.boolean(),
   desc: z.string(),
+  section: z.string(),
 });

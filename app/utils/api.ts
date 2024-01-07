@@ -10,9 +10,9 @@ if (typeof window !== "undefined") {
 }
 
 const API_BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? process.env.NEXT_PUBLIC_API_BASE_URL_REMOTE
-    : process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL;
+  process.env.NODE_ENV === "development"
+    ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
+    : process.env.NEXT_PUBLIC_API_BASE_URL_REMOTE;
 
 const api = axios.create({
   baseURL: API_BASE_URL,

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import api from "../utils/api";
 import { useParams } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface Answer {
   ansText: string;
@@ -97,57 +99,48 @@ const AddAssignmentForm = () => {
             type="text"
             value={question}
             onChange={(e) => handleQuestionChange(index, e.target.value)}
-            placeholder={`Question ${index + 1}`}
+            placeholder={`السؤال ${index + 1}`}
             className="w-full px-3 py-2 border rounded-md"
           />
           {answers[index].map((answer, ansIndex) => (
             <div
               key={`answer-${index}-${ansIndex}`}
-              className="flex items-center mb-2"
+              className="flex flex-row gap-5 p-5"
             >
-              <input
+              <Input
                 type="text"
                 value={answer.ansText}
                 onChange={(e) =>
                   handleAnswerChange(index, ansIndex, e.target.value)
                 }
-                placeholder={`Answer ${ansIndex + 1}`}
+                placeholder={`الاجابة ${ansIndex + 1}`}
                 className="w-full px-3 py-2 border rounded-md mr-2"
               />
-              <label>
-                Is Correct?
-                <input
-                  type="checkbox"
-                  checked={answer.isCorrect}
-                  onChange={() => handleCheckboxChange(index, ansIndex)}
-                  className="ml-2"
-                />
-              </label>
+
+              <Input
+                type="checkbox"
+                checked={answer.isCorrect}
+                onChange={() => handleCheckboxChange(index, ansIndex)}
+              />
             </div>
           ))}
-          <button
+          <Button
             type="button"
             onClick={() => addAnswer(index)}
             className="mt-2 px-3 py-2 bg-blue-500 text-white rounded-md"
           >
-            Add Answer
-          </button>
+            اضافة اجابة
+          </Button>
         </div>
       ))}
-      <button
-        type="button"
-        onClick={addQuestion}
-        className="mb-4 px-3 py-2 bg-blue-500 text-white rounded-md"
-      >
-        Add Question
-      </button>
-      <button
-        disabled={isPending}
-        type="submit"
-        className="px-3 py-2 bg-blue-500 text-white rounded-md"
-      >
-        Submit
-      </button>
+      <div className="flex flex-row gap-5">
+        <Button type="button" onClick={addQuestion}>
+          اضافة سؤال
+        </Button>
+        <Button disabled={isPending} type="submit">
+          تسجيل
+        </Button>
+      </div>
     </form>
   );
 };

@@ -17,7 +17,7 @@ const AddAssignment = () => {
   return (
     <div className="flex mx-auto flex-col items-start justify-start max-w-3xl ">
       <div className="pt-10 pb-10">
-        <h1 className="text-3xl font-bold text-black">اضافة درس للمنصة</h1>
+        <h1 className="text-3xl font-bold text-black">اضافة واجب للدرس</h1>
       </div>
       <AddAssignmentForm />
     </div>

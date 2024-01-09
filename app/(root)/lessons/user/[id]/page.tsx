@@ -7,7 +7,7 @@ import { redirect, useParams } from "next/navigation";
 import algebra from "../../../../images/algebra.jpg";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Loader2 } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 import { useUserContext } from "@/app/context/UserContext";
 
 interface UserData {
@@ -63,11 +63,7 @@ const UserUnlockedLessons = () => {
   }
 
   if (isLoading) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <Loader2 className="animate-spin" />
-      </div>
-    ); // Optionally show a loading indicator
+    return <Loader />; // Optionally show a loading indicator
   }
   return (
     <div className="flex items-center flex-col p-10">

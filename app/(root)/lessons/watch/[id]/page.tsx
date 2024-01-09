@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/app/components/Loader";
 import api from "@/app/utils/api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
@@ -42,6 +43,10 @@ const UnlockedLesson = () => {
         <h1 className="text-2xl font-bold">عذرا ، لا يوجد اي دروس متاحة لك.</h1>
       </div>
     );
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (

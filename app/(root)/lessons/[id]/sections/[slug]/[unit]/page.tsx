@@ -16,6 +16,7 @@ import {
 import { useUserContext } from "@/app/context/UserContext";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Loader from "@/app/components/Loader";
 
 interface LessonData {
   _id: string;
@@ -36,7 +37,7 @@ interface LessonProps {
 const LessonsByUnit = () => {
   const params = useParams<{ slug: string; id: string; unit: string }>();
   const section = decodeURIComponent(params.slug);
-  const classId = decodeURIComponent(params.id);
+  const classroom = decodeURIComponent(params.id);
   const unit = decodeURIComponent(params.unit);
 
   const { user }: any = useUserContext();
@@ -49,7 +50,9 @@ const LessonsByUnit = () => {
     queryKey: ["classLessons"],
     queryFn: async () => {
       try {
-        const { data } = await api.get(`/lessons/classes/${section}/${unit}`);
+        const { data } = await api.get(
+          `/lessons/classes/${section}/${unit}/${classroom}/`
+        );
         return data;
       } catch (error) {
         console.error("API Error:", error);
@@ -59,11 +62,7 @@ const LessonsByUnit = () => {
   });
 
   if (isLoading) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <Loader2 className="animate-spin" />
-      </div>
-    ); // Show loading indicator while fetching data
+    return <Loader />;
   }
 
   if (isError || !classLessons || classLessons.lessons.length === 0) {
@@ -73,7 +72,7 @@ const LessonsByUnit = () => {
           عذراً، لا يوجد دروس متاحة لهذا الصف.
         </h1>
       </div>
-    ); // Show an error message when there's an error or no lessons available
+    );
   }
 
   const lessonsArray = Array.isArray(classLessons)
@@ -83,7 +82,7 @@ const LessonsByUnit = () => {
   return (
     <div className="flex items-center flex-col p-10">
       <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
-        الدروس الخاصة ب{classId}
+        الدروس الخاصة ب{classroom}
       </h2>
 
       <div className="grid md:grid-cols-2 sm:grid-cols-1 grid-cols-1 md:gap-x-80 gap-9 p-8 rounded-lg">

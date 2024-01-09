@@ -5,9 +5,9 @@ import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
-import { redirect, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
+import Loader from "@/app/components/Loader";
 
 const Assignment = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,11 +64,7 @@ const Assignment = () => {
   }
 
   if (isLoading) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <Loader2 className="animate-spin" />
-      </div>
-    ); // Optionally show a loading indicator
+    return <Loader />; // Optionally show a loading indicator
   }
 
   const questions = assignments.reduce((acc: any, current: any) => {

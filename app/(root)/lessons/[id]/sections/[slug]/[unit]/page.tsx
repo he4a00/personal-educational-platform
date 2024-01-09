@@ -41,8 +41,6 @@ const LessonsByUnit = () => {
 
   const { user }: any = useUserContext();
 
-  console.log(user);
-
   const {
     data: classLessons,
     isLoading,

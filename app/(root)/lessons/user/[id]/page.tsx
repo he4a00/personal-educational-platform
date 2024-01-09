@@ -56,7 +56,7 @@ const UserUnlockedLessons = () => {
 
   if (isError || !userUnlockedLEssons || userUnlockedLEssons.length === 0) {
     return (
-      <div className="w-full h-full flex items-center justify-center">
+      <div className="w-full h-full flex items-center justify-center p-3">
         <h1 className="text-3xl font-bold">عذرا ، لا يوجد أي دروس متاحة لك.</h1>
       </div>
     );
@@ -86,18 +86,25 @@ const UserUnlockedLessons = () => {
 
               <div className="flex flex-col items-center bg-white opacity-90 p-5 shadow-lg w-[380px] md:w-[550px] relative bottom-5 rounded-lg">
                 <h1 className="text-xl font-semibold p-2">
-                  {lessonData.lessonId.title}
+                  {lessonData.lessonId?.title}
                 </h1>
-                <p className="p-2 font-semibold">{lessonData.lessonId.desc}</p>
+                <p className="p-2 font-semibold">{lessonData.lessonId?.desc}</p>
                 <div className="flex flex-row gap-5">
                   <h4 className=" font-bold bg-blue-300 p-3 rounded-lg">
-                    الوحدة {lessonData.lessonId.unit}
+                    الوحدة {lessonData.lessonId?.unit}
                   </h4>
                 </div>
                 {/* Replace Button with your actual component */}
-                <Link href={`/lessons/watch/${lessonData.lessonId._id}`}>
-                  <Button className="m-5">مشاهدة</Button>
-                </Link>
+                <div className="flex flex-row justify-between">
+                  <Link href={`/lessons/watch/${lessonData.lessonId?._id}`}>
+                    <Button className="m-5">مشاهدة</Button>
+                  </Link>
+                  <Link
+                    href={`/lessons/assignements/${lessonData.lessonId?._id}`}
+                  >
+                    <Button className="m-5">الواجب</Button>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

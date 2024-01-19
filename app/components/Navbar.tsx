@@ -7,6 +7,7 @@ import {
   ChevronsLeftRight,
   LogOut,
   MenuSquare,
+  Projector,
   UserPlus,
   UserRoundCheck,
 } from "lucide-react";
@@ -110,6 +111,15 @@ const Navbar = () => {
                         <UserPlus />
                       </Button>
                     </Link>
+                    <Link href="/feedbacks">
+                      <Button
+                        variant="destructive"
+                        className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
+                      >
+                        الاقتراحات/المشاكل
+                        <Projector />
+                      </Button>
+                    </Link>
                   </>
                 )}
               </>
@@ -152,6 +162,15 @@ const Navbar = () => {
                   <Button className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100">
                     فتح درس
                     <UserPlus />
+                  </Button>
+                </Link>
+                <Link href="/feedbacks">
+                  <Button
+                    variant="destructive"
+                    className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
+                  >
+                    الاقتراحات/المشاكل
+                    <Projector />
                   </Button>
                 </Link>
               </>

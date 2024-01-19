@@ -28,6 +28,7 @@ interface LessonData {
   videoURL: string;
   classroom: string;
   section: string;
+  status: string;
 }
 
 interface LessonProps {
@@ -68,7 +69,7 @@ const LessonsByUnit = () => {
   if (isError || !classLessons || classLessons.lessons.length === 0) {
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold p-3">
           عذراً، لا يوجد دروس متاحة لهذا الصف.
         </h1>
       </div>
@@ -97,51 +98,45 @@ const LessonsByUnit = () => {
                 className=" transition-all duration-500 hover:rotate-2 rounded-lg"
               />
 
-              <Accordion type="single" collapsible>
-                <AccordionItem value="item-0">
-                  <AccordionTrigger className="font-semibold text-xl  p-4">
-                    تفاصيل الدرس
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-col bg-white opacity-90 p-5 shadow-lg w-[370px] md:w-[350px] relative bottom-5 rounded-lg">
-                      <div className="flex items-center justify-center flex-col">
-                        <h1 className="text-xl font-semibold p-2">
-                          {lesson.title}
-                        </h1>
-                        <p className="p-2 font-semibold">{lesson.desc}</p>
-                      </div>
-                      <div className="flex flex-col gap-5 items-start">
-                        <Accordion type="single" collapsible className="w-full">
-                          <AccordionItem value="item-1">
-                            <AccordionTrigger>سعر الدرس</AccordionTrigger>
-                            <AccordionContent>
-                              {lesson.price}.00 جنيها
-                            </AccordionContent>
-                          </AccordionItem>
-                          <AccordionItem value="item-2">
-                            <AccordionTrigger>الوحدة </AccordionTrigger>
-                            <AccordionContent>
-                              الوحدة {lesson.unit}
-                            </AccordionContent>
-                          </AccordionItem>
-                          <AccordionItem value="item-3">
-                            <AccordionTrigger>الصف </AccordionTrigger>
-                            <AccordionContent>
-                              {lesson.classroom}
-                            </AccordionContent>
-                          </AccordionItem>
-                          <AccordionItem value="item-4">
-                            <AccordionTrigger>القسم</AccordionTrigger>
-                            <AccordionContent>
-                              {lesson.section}
-                            </AccordionContent>
-                          </AccordionItem>
-                        </Accordion>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              {lesson?.status === "free" ? (
+                <span className="flex items-center justify-center p-5 rounded-lg w-72 text-center text-white font-bold bg-yellow-500 h-10 absolute">
+                  مجاني
+                </span>
+              ) : (
+                <span className="flex items-center justify-center p-5 rounded-lg w-72 text-center text-white font-bold bg-yellow-500 h-10 absolute">
+                  مدفوع
+                </span>
+              )}
+
+              <div className="flex flex-col bg-white opacity-90 p-5 shadow-lg w-[370px] md:w-[350px] relative bottom-5 rounded-lg">
+                <div className="flex items-center justify-center flex-col">
+                  <h1 className="text-xl font-semibold p-2">{lesson.title}</h1>
+                  <p className="p-2 font-semibold">{lesson.desc}</p>
+                </div>
+                <div className="flex flex-col gap-5 items-start">
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger>سعر الدرس</AccordionTrigger>
+                      <AccordionContent>
+                        {lesson.price}.00 جنيها
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                      <AccordionTrigger>الوحدة </AccordionTrigger>
+                      <AccordionContent>الوحدة {lesson.unit}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                      <AccordionTrigger>الصف </AccordionTrigger>
+                      <AccordionContent>{lesson.classroom}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-4">
+                      <AccordionTrigger>القسم</AccordionTrigger>
+                      <AccordionContent>{lesson.section}</AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </div>
+
               {user?.user?.type === "teacher" ? (
                 <Link href={`/add-assignment/${lesson._id}`}>
                   <Button>اضافة واجب</Button>

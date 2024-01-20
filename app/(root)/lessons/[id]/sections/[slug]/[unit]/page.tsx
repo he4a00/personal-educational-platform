@@ -139,7 +139,9 @@ const LessonsByUnit = () => {
 
               {lesson?.status === "free" ? (
                 <Link href={`/lessons/watch/${lesson?._id}`}>
-                  <Button className="m-5">مشاهدة</Button>
+                  <Button disabled={!user} className="m-5">
+                    مشاهدة
+                  </Button>
                 </Link>
               ) : (
                 ""

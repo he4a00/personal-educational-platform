@@ -37,7 +37,11 @@ const SignUp = () => {
       }
     },
     onSuccess: (data) => {
-      redirect("/");
+      toast({
+        title: "تم اضافتك للمنصة ، برجاء تسجيل الدخول",
+        variant: "default",
+      });
+      redirect("/sign-in");
     },
     onError: (err: any) => {
       if (err.response.status === 409) {
@@ -194,10 +198,15 @@ const SignUp = () => {
               </div>
               <hr className="mb-6 border-t" />
 
-              <div className="text-center">
+              <div className="text-center flex flex-col gap-5">
                 <Link className="text-black" href="/sign-in">
                   <Button className="w-full" variant="outline">
                     تسجيل الدخول
+                  </Button>
+                </Link>
+                <Link className="text-black" href="/">
+                  <Button className="w-full" variant="outline">
+                    الصفحة الرئيسية
                   </Button>
                 </Link>
               </div>

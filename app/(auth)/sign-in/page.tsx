@@ -87,10 +87,15 @@ const SignIn = () => {
               </div>
               <hr className="mb-6 border-t" />
 
-              <div className="text-center">
+              <div className="text-center flex flex-col gap-5">
                 <Link className="text-black" href="/sign-up">
                   <Button className="w-full" variant="outline">
                     انشىء حسابك الان
+                  </Button>
+                </Link>
+                <Link className="text-black" href="/">
+                  <Button className="w-full" variant="outline">
+                    الصفحة الرئيسية
                   </Button>
                 </Link>
               </div>

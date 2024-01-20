@@ -78,7 +78,7 @@ const CreateFeedbackForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col justify-center gap-10 w-full bg-[#101012] p-12 rounded-lg"
+          className="flex flex-col justify-center gap-10 w-full bg-[#101012] p-12"
         >
           <FormField
             control={form.control}

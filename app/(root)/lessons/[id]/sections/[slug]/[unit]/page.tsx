@@ -137,6 +137,14 @@ const LessonsByUnit = () => {
                 </div>
               </div>
 
+              {lesson?.status === "free" ? (
+                <Link href={`/lessons/watch/${lesson?._id}`}>
+                  <Button className="m-5">مشاهدة</Button>
+                </Link>
+              ) : (
+                ""
+              )}
+
               {user?.user?.type === "teacher" ? (
                 <Link href={`/add-assignment/${lesson._id}`}>
                   <Button>اضافة واجب</Button>

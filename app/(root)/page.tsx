@@ -9,7 +9,12 @@ export default function Home() {
       <Hero />
       <Services />
       <Classes />
-      <CreateFeedbackForm />
+      <div>
+        <h3 className="text-2xl text-center p-6 font-bold">
+          تقديم اقتراح او تبليغ عن مشكلة في المنصة
+        </h3>
+        <CreateFeedbackForm />
+      </div>
     </main>
   );
 }

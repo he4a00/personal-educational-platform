@@ -16,7 +16,7 @@ const SectionWithUnits = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {units?.map((unit: any) => {
           return (
-            <>
+            <div key={unit.name}>
               <Link
                 href={`/lessons/${classId}/sections/${section}/${unit.name}`}
                 className="hover:text-2xl transition-all"
@@ -28,7 +28,7 @@ const SectionWithUnits = () => {
                   {unit.name}
                 </div>
               </Link>
-            </>
+            </div>
           );
         })}
       </div>

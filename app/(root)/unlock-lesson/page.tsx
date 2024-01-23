@@ -1,6 +1,7 @@
 "use client";
 import UnlockForAll from "@/app/components/UnlockForAll";
 import UnlockLesson from "@/app/components/UnlockLesson";
+import UsersSearch from "@/app/components/UsersSearch";
 import { useUserContext } from "@/app/context/UserContext";
 import { redirect } from "next/navigation";
 
@@ -18,9 +19,10 @@ const AddLesson = () => {
       <div className="pt-10 pb-10">
         <h1 className="text-3xl font-bold text-black">اضافة الدرس للطالب</h1>
       </div>
-      <div className="flex flex-col md:flex-row justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
+        <UsersSearch />
         <UnlockLesson />
-        <UnlockForAll />
+        {/* <UnlockForAll /> */}
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ const CreateFeedbackForm = () => {
     },
     onSuccess: () => {
       toast({
-        title: " تم ارسال الاقتراح/المسشكلة الخاصة بك",
+        title: "تم ارسال الاقتراح/المشكلة الخاصة بك",
         variant: "default",
       });
     },
@@ -69,61 +69,64 @@ const CreateFeedbackForm = () => {
       }
     },
   });
+
   function onSubmit(values: z.infer<typeof FeedbackValidator>) {
     createFeedback(values);
   }
 
   return (
-    <div className="w-full">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col justify-center gap-10 w-full bg-[#101012] p-12"
-        >
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-semibold text-white">
-                  عنوان المشكلة/الاقتراح
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className="border border-[#1F1F22] bg-[#121417] text-white !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="desc"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-semibold text-white">
-                  تفاصيل الاقتراح/المشكلة
-                </FormLabel>
-                <FormControl>
-                  <Textarea
-                    className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button variant="secondary" disabled={isPending} type="submit">
-            ارسال
-          </Button>
-        </form>
-      </Form>
+    <div className="w-full flex items-center justify-center ">
+      <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full">
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          إرسال اقتراح/مشكلة
+        </h1>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-6"
+          >
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold text-gray-700">
+                    عنوان المشكلة/الاقتراح
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="border-gray-300 bg-gray-100 text-gray-800 focus:border-blue-500 focus:ring-blue-500"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="desc"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold text-gray-700">
+                    تفاصيل الاقتراح/المشكلة
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      className="border-gray-300 bg-gray-100 text-gray-800 focus:border-blue-500 focus:ring-blue-500"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button variant="outline" disabled={isPending} type="submit">
+              ارسال
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };

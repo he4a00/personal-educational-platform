@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   Book,
   ChevronsLeftRight,
+  Lightbulb,
   LogOut,
   MenuSquare,
   Projector,
@@ -89,6 +90,12 @@ const Navbar = () => {
                     <LogOut />
                   </Button>
                 </Link>
+                <Link href={`/feedbacks/`}>
+                  <Button variant="outline" className="flex gap-2 p-7 w-full">
+                    اقتراح/مشكلة
+                    <Lightbulb />
+                  </Button>
+                </Link>
 
                 {/* Render 'Add Lesson' button if the user is a teacher */}
                 {user?.user?.type === "teacher" && (
@@ -111,9 +118,9 @@ const Navbar = () => {
                         <UserPlus />
                       </Button>
                     </Link>
-                    <Link href="/feedbacks">
+                    <Link href="/feedbacks/create-feedback">
                       <Button
-                        variant="destructive"
+                        variant="outline"
                         className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
                       >
                         الاقتراحات/المشاكل
@@ -148,6 +155,12 @@ const Navbar = () => {
               <Button className="flex gap-2 p-7 w-full">
                 الدروس
                 <Book />
+              </Button>
+            </Link>
+            <Link href={`/feedbacks/create-feedback`}>
+              <Button variant="outline" className="flex gap-2 p-7 w-full">
+                اقتراح/مشكلة
+                <Lightbulb />
               </Button>
             </Link>
             {user?.user?.type === "teacher" && (

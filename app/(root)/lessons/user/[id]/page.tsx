@@ -4,10 +4,10 @@ import api from "@/app/utils/api";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { redirect, useParams } from "next/navigation";
-import algebra from "../../../../images/algebra.jpg";
+import algebra from "../../../../images/algebra.jpg"; // Make sure to replace with actual image paths if different
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import { useUserContext } from "@/app/context/UserContext";
 
 interface UserData {
@@ -43,7 +43,7 @@ const UserUnlockedLessons = () => {
   }
 
   const {
-    data: userUnlockedLEssons,
+    data: userUnlockedLessons,
     isLoading,
     isError,
   } = useQuery<UserData[], Error>({
@@ -54,7 +54,7 @@ const UserUnlockedLessons = () => {
     },
   });
 
-  if (isError || !userUnlockedLEssons || userUnlockedLEssons.length === 0) {
+  if (isError || !userUnlockedLessons || userUnlockedLessons.length === 0) {
     return (
       <div className="w-full h-full flex items-center justify-center p-3">
         <h1 className="text-3xl font-bold">عذرا ، لا يوجد أي دروس متاحة لك.</h1>
@@ -63,44 +63,47 @@ const UserUnlockedLessons = () => {
   }
 
   if (isLoading) {
-    return <Loader />; // Optionally show a loading indicator
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
+
   return (
-    <div className="flex items-center flex-col p-10">
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-9 p-10 rounded-lg">
-        {userUnlockedLEssons &&
-          userUnlockedLEssons.map((lessonData: UserData) => (
-            <div key={lessonData._id} className="flex flex-col items-center">
-              {/* Use Image component with appropriate src */}
+    <div className="flex flex-col items-center p-10 min-h-screen">
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+        {userUnlockedLessons &&
+          userUnlockedLessons.map((lessonData: UserData) => (
+            <div
+              key={lessonData._id}
+              className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg"
+            >
               <Image
                 alt=""
                 width={350}
-                height={300}
-                src={algebra} // Replace with appropriate image source
-                className=" transition-all duration-500 hover:rotate-2 rounded-lg"
+                height={200}
+                src={algebra}
+                className="rounded-lg mb-4"
               />
-
-              <div className="flex flex-col items-center bg-white opacity-90 p-5 shadow-lg w-[380px] md:w-[550px] relative bottom-5 rounded-lg">
-                <h1 className="text-xl font-semibold p-2">
-                  {lessonData.lessonId?.title}
-                </h1>
-                <p className="p-2 font-semibold">{lessonData.lessonId?.desc}</p>
-                <div className="flex flex-row gap-5">
-                  <h4 className=" font-bold bg-blue-300 p-3 rounded-lg">
-                    الوحدة {lessonData.lessonId?.unit}
-                  </h4>
-                </div>
-                {/* Replace Button with your actual component */}
-                <div className="flex flex-row justify-between">
-                  <Link href={`/lessons/watch/${lessonData.lessonId?._id}`}>
-                    <Button className="m-5">مشاهدة</Button>
-                  </Link>
-                  <Link
-                    href={`/lessons/assignements/${lessonData.lessonId?._id}`}
-                  >
-                    <Button className="m-5">الواجب</Button>
-                  </Link>
-                </div>
+              <h1 className="text-xl font-semibold text-gray-800 mb-2">
+                {lessonData.lessonId?.title}
+              </h1>
+              <p className="text-gray-600 mb-4">{lessonData.lessonId?.desc}</p>
+              <h4 className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full mb-4">
+                الوحدة {lessonData.lessonId?.unit}
+              </h4>
+              <div className="flex gap-5">
+                <Link href={`/lessons/watch/${lessonData.lessonId?._id}`}>
+                  <Button className="bg-blue-500 text-white hover:bg-blue-600">
+                    مشاهدة
+                  </Button>
+                </Link>
+                <Link href={`/lessons/assignments/${lessonData.lessonId?._id}`}>
+                  <Button className="bg-green-500 text-white hover:bg-green-600">
+                    الواجب
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}

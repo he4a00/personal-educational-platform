@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import api from "../utils/api";
 import { useToast } from "@/components/ui/use-toast";
 import { UnlockedLessonValidation } from "../utils/validators/unlockedLessonVaidator";
+
 const UnlockLesson = () => {
   const form = useForm({
     resolver: zodResolver(UnlockedLessonValidation),
@@ -30,7 +31,7 @@ const UnlockLesson = () => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const { mutate: unlcokLesson, isPending } = useMutation({
+  const { mutate: unlockLesson, isPending } = useMutation({
     mutationFn: async (formData: any) => {
       try {
         const { data } = await api.post("/owned", formData);
@@ -58,8 +59,9 @@ const UnlockLesson = () => {
       }
     },
   });
+
   function onSubmit(values: z.infer<typeof UnlockedLessonValidation>) {
-    unlcokLesson({
+    unlockLesson({
       userId: values.userId,
       lessonId: values.lessonId,
     });
@@ -69,23 +71,22 @@ const UnlockLesson = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-start gap-10 w-full bg-[#101012] p-12 rounded-lg"
+        className="flex flex-col justify-start gap-6 w-full bg-[#f9fafb] p-8 rounded-lg shadow-md"
       >
         <FormField
           control={form.control}
           name="userId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">
+              <FormLabel className="font-semibold text-gray-700">
                 الأي دي الخاص بالطالب
               </FormLabel>
               <FormControl>
                 <Input
-                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -96,26 +97,25 @@ const UnlockLesson = () => {
           name="lessonId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">
+              <FormLabel className="font-semibold text-gray-700">
                 الأي دي الخاص بالدرس المراد فتحه
               </FormLabel>
               <FormControl>
                 <Input
-                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button variant="secondary" disabled={isPending} type="submit">
+        <Button variant="outline" disabled={isPending} type="submit">
           اضافة
         </Button>
         <Link
-          className="text-center font-semibold text-xl text-white"
+          className="text-center font-semibold text-xl text-blue-600 hover:underline"
           href="/dashboard"
         >
           العودة للصفحة الرئيسية

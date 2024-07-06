@@ -1,4 +1,5 @@
 "use client";
+import LessonsSearch from "@/app/components/LessonSearch";
 import UnlockForAll from "@/app/components/UnlockForAll";
 import UnlockLesson from "@/app/components/UnlockLesson";
 import UsersSearch from "@/app/components/UsersSearch";
@@ -21,6 +22,7 @@ const AddLesson = () => {
       </div>
       <div className="flex flex-col justify-center items-center">
         <UsersSearch />
+        <LessonsSearch />
         <UnlockLesson />
         {/* <UnlockForAll /> */}
       </div>

@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import api from "../utils/api";
 import { classes } from "../constants";
 import { useToast } from "@/components/ui/use-toast";
+
 const CreateSummaryForm = ({ student }: any) => {
   const form = useForm({
     resolver: zodResolver(LessonValidation),
@@ -62,6 +63,7 @@ const CreateSummaryForm = ({ student }: any) => {
       }
     },
   });
+
   function onSubmit(values: z.infer<typeof LessonValidation>) {
     const formData = new FormData();
     formData.append("videoURL", selectedFile as Blob);
@@ -85,23 +87,22 @@ const CreateSummaryForm = ({ student }: any) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-start gap-10 w-full bg-[#101012] p-12 rounded-lg"
+        className="flex flex-col justify-start gap-6 w-full bg-[#f9fafb] p-8 rounded-lg shadow-md"
       >
         <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">
+              <FormLabel className="font-semibold text-gray-700">
                 عنوان الدرس
               </FormLabel>
               <FormControl>
                 <Input
-                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -112,14 +113,15 @@ const CreateSummaryForm = ({ student }: any) => {
           name="unit"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">الوحدة</FormLabel>
+              <FormLabel className="font-semibold text-gray-700">
+                الوحدة
+              </FormLabel>
               <FormControl>
                 <Input
-                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -130,14 +132,15 @@ const CreateSummaryForm = ({ student }: any) => {
           name="desc"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">الوصف</FormLabel>
+              <FormLabel className="font-semibold text-gray-700">
+                الوصف
+              </FormLabel>
               <FormControl>
                 <Input
-                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -148,10 +151,12 @@ const CreateSummaryForm = ({ student }: any) => {
           name="classroom"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel className="font-semibold text-white">الصف</FormLabel>
+              <FormLabel className="font-semibold text-gray-700">
+                الصف
+              </FormLabel>
               <FormControl>
                 <select
-                  className="border border-[#1F1F22] bg-[#121417] text-white p-2 pr-8 !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md p-2 pr-8 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 >
                   <option value="" disabled>
@@ -164,7 +169,6 @@ const CreateSummaryForm = ({ student }: any) => {
                   ))}
                 </select>
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -175,41 +179,45 @@ const CreateSummaryForm = ({ student }: any) => {
           name="price"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">السعر</FormLabel>
+              <FormLabel className="font-semibold text-gray-700">
+                السعر
+              </FormLabel>
               <FormControl>
                 <Input
-                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="section"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">اقسم</FormLabel>
+              <FormLabel className="font-semibold text-gray-700">
+                القسم
+              </FormLabel>
               <FormControl>
                 <Input
-                  className="border border-[#1F1F22] bg-[#121417] text-white  !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="videoURL"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold text-white">
+              <FormLabel className="font-semibold text-gray-700">
                 اضافة الفيديو
               </FormLabel>
               <FormControl>
@@ -220,21 +228,22 @@ const CreateSummaryForm = ({ student }: any) => {
                   onBlur={field.onBlur}
                   name={field.name}
                   ref={field.ref}
-                  className="border border-[#1F1F22] bg-[#121417] text-white p-2 !important focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important"
+                  className="border border-gray-300 bg-white text-gray-900 p-2 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 />
               </FormControl>
               {selectedFile && (
-                <span className="text-white">{selectedFile.name}</span>
+                <span className="text-gray-900">{selectedFile.name}</span>
               )}
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button variant="secondary" disabled={isPending} type="submit">
+
+        <Button variant="outline" disabled={isPending} type="submit">
           اضافة
         </Button>
         <Link
-          className="text-center font-semibold text-xl text-white"
+          className="text-center font-semibold text-xl text-blue-600 hover:underline"
           href="/dashboard"
         >
           العودة للصفحة الرئيسية

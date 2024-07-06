@@ -28,27 +28,46 @@ const Feedbacks = () => {
   const totalPages = feedbacks?.totalPages;
 
   return (
-    <div className="container">
-      <h3 className="text-3xl p-4 text-center font-bold">الاقتراحات/المشاكل</h3>
-      {feedbacks?.feedbacks.map((fb: FeedbackProps) => {
-        return (
-          <div className="flex flex-col p-4" key={fb._id}>
-            <div className="flex flex-col p-4 w-full bg-gray-300">
-              <h1 className="text-xl font-semibold p-2">
-                عنوان المشكلة/الاقتراح:{fb?.title}
-              </h1>
-              <p className="font-semibold text-xl p-2 break-words">
-                تفاصيل المشكلة/الاقتراح:{fb?.desc}
-              </p>
-              <MarkIsReadButton
-                feedbackId={fb._id}
-                text="تم قرائته"
-                isRead={fb.isRead}
-              />
-            </div>
+    <div className="container mx-auto p-4">
+      <h3 className="text-3xl p-4 text-center font-bold mb-8">
+        الاقتراحات/المشاكل
+      </h3>
+      <div className="space-y-6">
+        {feedbacks?.feedbacks.map((fb: FeedbackProps) => (
+          <div key={fb._id} className="bg-white shadow-md rounded-lg p-6">
+            <h1 className="text-2xl font-bold mb-4">
+              عنوان المشكلة/الاقتراح: {fb?.title}
+            </h1>
+            <p className="text-lg mb-4">تفاصيل المشكلة/الاقتراح: {fb?.desc}</p>
+            <MarkIsReadButton
+              feedbackId={fb._id}
+              text="تم قرائته"
+              isRead={fb.isRead}
+            />
           </div>
-        );
-      })}
+        ))}
+      </div>
+      <div className="flex justify-center mt-8 space-x-4">
+        <Button
+          variant="secondary"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          السابق
+        </Button>
+        <span className="text-lg font-semibold">
+          {currentPage} من {totalPages}
+        </span>
+        <Button
+          variant="secondary"
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          التالي
+        </Button>
+      </div>
     </div>
   );
 };

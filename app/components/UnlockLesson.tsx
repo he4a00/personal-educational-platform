@@ -23,8 +23,8 @@ const UnlockLesson = () => {
   const form = useForm({
     resolver: zodResolver(UnlockedLessonValidation),
     defaultValues: {
-      userId: "",
-      lessonId: "",
+      phoneNumber: "",
+      title: "",
     },
   });
 
@@ -40,7 +40,7 @@ const UnlockLesson = () => {
         console.log(error);
       }
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       router.push("/");
     },
     onError: (err: any) => {
@@ -62,8 +62,8 @@ const UnlockLesson = () => {
 
   function onSubmit(values: z.infer<typeof UnlockedLessonValidation>) {
     unlockLesson({
-      userId: values.userId,
-      lessonId: values.lessonId,
+      phoneNumber: values.phoneNumber,
+      title: values.title,
     });
   }
 
@@ -75,11 +75,11 @@ const UnlockLesson = () => {
       >
         <FormField
           control={form.control}
-          name="userId"
+          name="phoneNumber"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold text-gray-700">
-                الأي دي الخاص بالطالب
+                رقم الهاتف
               </FormLabel>
               <FormControl>
                 <Input
@@ -94,11 +94,11 @@ const UnlockLesson = () => {
 
         <FormField
           control={form.control}
-          name="lessonId"
+          name="title"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold text-gray-700">
-                الأي دي الخاص بالدرس المراد فتحه
+                عنوان الدرس
               </FormLabel>
               <FormControl>
                 <Input
@@ -116,7 +116,7 @@ const UnlockLesson = () => {
         </Button>
         <Link
           className="text-center font-semibold text-xl text-blue-600 hover:underline"
-          href="/dashboard"
+          href="/"
         >
           العودة للصفحة الرئيسية
         </Link>

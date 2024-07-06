@@ -89,128 +89,131 @@ const CreateSummaryForm = ({ student }: any) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col justify-start gap-6 w-full bg-[#f9fafb] p-8 rounded-lg shadow-md"
       >
-        <FormField
-          control={form.control}
-          name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-semibold text-gray-700">
-                عنوان الدرس
-              </FormLabel>
-              <FormControl>
-                <Input
-                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-row gap-4 w-full">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel className="font-semibold text-gray-700">
+                  عنوان الدرس
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="unit"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-semibold text-gray-700">
-                الوحدة
-              </FormLabel>
-              <FormControl>
-                <Input
-                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="unit"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel className="font-semibold text-gray-700">
+                  الوحدة
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
-        <FormField
-          control={form.control}
-          name="desc"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-semibold text-gray-700">
-                الوصف
-              </FormLabel>
-              <FormControl>
-                <Input
-                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-row gap-4 items-center justify-center">
+          <FormField
+            control={form.control}
+            name="desc"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel className="font-semibold text-gray-700">
+                  الوصف
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="classroom"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel className="font-semibold text-gray-700">
-                الصف
-              </FormLabel>
-              <FormControl>
-                <select
-                  className="border border-gray-300 bg-white text-gray-900 rounded-md p-2 pr-8 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  {...field}
-                >
-                  <option value="" disabled>
-                    اختر الصف
-                  </option>
-                  {classes.map((cla, index) => (
-                    <option key={index} value={cla.name}>
-                      {cla.name}
+          <FormField
+            control={form.control}
+            name="classroom"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormControl>
+                  <select
+                    className="border border-gray-300 bg-white text-gray-900 rounded-md p-2 pr-8 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  >
+                    <option value="" disabled>
+                      اختر الصف
                     </option>
-                  ))}
-                </select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                    {classes.map((cla, index) => (
+                      <option key={index} value={cla.name}>
+                        {cla.name}
+                      </option>
+                    ))}
+                  </select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
-        <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-semibold text-gray-700">
-                السعر
-              </FormLabel>
-              <FormControl>
-                <Input
-                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-row gap-4 w-full">
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel className="font-semibold text-gray-700">
+                  السعر
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="section"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-semibold text-gray-700">
-                القسم
-              </FormLabel>
-              <FormControl>
-                <Input
-                  className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="section"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel className="font-semibold text-gray-700">
+                  القسم
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}

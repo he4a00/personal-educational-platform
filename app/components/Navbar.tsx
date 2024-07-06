@@ -152,13 +152,13 @@ const Navbar = () => {
               <LogOut />
             </Button>
             <Link href={`/lessons/user/${user?.user?._id}`}>
-              <Button className="flex gap-2 p-7 w-full">
+              <Button className="flex gap-2 p-7">
                 الدروس
                 <Book />
               </Button>
             </Link>
             <Link href={`/feedbacks/create-feedback`}>
-              <Button variant="outline" className="flex gap-2 p-7 w-full">
+              <Button variant="outline" className="flex gap-2 p-7">
                 اقتراح/مشكلة
                 <Lightbulb />
               </Button>
@@ -166,18 +166,18 @@ const Navbar = () => {
             {user?.user?.type === "teacher" && (
               <>
                 <Link href="/add-lesson">
-                  <Button className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black">
+                  <Button className="flex gap-2 p-7">
                     اضافة درس
                     <UserPlus />
                   </Button>
                 </Link>
                 <Link href="/unlock-lesson">
-                  <Button className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100">
+                  <Button className="flex gap-2 p-7">
                     فتح درس
                     <UserPlus />
                   </Button>
                 </Link>
-                <Link href="/feedbacks">
+                {/* <Link href="/feedbacks">
                   <Button
                     variant="destructive"
                     className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
@@ -185,25 +185,23 @@ const Navbar = () => {
                     الاقتراحات/المشاكل
                     <Projector />
                   </Button>
-                </Link>
+                </Link> */}
               </>
             )}
           </div>
         ) : (
           <div className="flex flex-row gap-4">
             <Link href="/sign-in">
-              <Button
-                variant="ghost"
-                className="flex gap-2 p-7 transition-all duration-300 ease-in-out transform hover:shadow-md hover:translate-y-0.5"
-              >
+              <Button variant="outline" className="flex gap-2 p-7">
                 تسجيل الدخول
                 <UserRoundCheck />
               </Button>
             </Link>
             <Link href="/sign-up">
               <Button
-                variant="destructive"
-                className="flex gap-2 p-7 transition-all duration-700 hover:bg-transparent hover:text-black hover:border-2 hover:border-red-500 animate-bounce"
+                size="default"
+                variant="outline"
+                className="flex gap-2 p-7"
               >
                 انشاء حساب
                 <UserPlus />

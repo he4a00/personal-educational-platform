@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const UnlockedLessonValidation = z.object({
-  userId: z.string(),
-  lessonId: z.string(),
+  phoneNumber: z.string(),
+  title: z.string(),
 });
 
 export const UnlockForAllValidation = z.object({

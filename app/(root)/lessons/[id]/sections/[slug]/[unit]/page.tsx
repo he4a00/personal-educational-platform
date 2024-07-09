@@ -98,62 +98,62 @@ const LessonsByUnit = () => {
                 className=" transition-all duration-500 hover:rotate-2 rounded-lg"
               />
 
-              {lesson?.status === "free" ? (
-                <span className="flex items-center justify-center p-5 rounded-lg w-72 text-center text-white font-bold bg-yellow-500 h-10 absolute">
-                  مجاني
-                </span>
-              ) : (
-                <span className="flex items-center justify-center p-5 rounded-lg w-72 text-center text-white font-bold bg-yellow-500 h-10 absolute">
-                  مدفوع
-                </span>
-              )}
-
-              <div className="flex flex-col bg-white opacity-90 p-5 shadow-lg w-[370px] md:w-[350px] relative bottom-5 rounded-lg">
-                <div className="flex items-center justify-center flex-col">
-                  <h1 className="text-xl font-semibold p-2">{lesson.title}</h1>
-                  <p className="p-2 font-semibold">{lesson.desc}</p>
-                </div>
+              <div className="flex flex-col bg-white opacity-90 p-3 shadow-lg w-[370px] md:w-[350px] relative bottom-5 rounded-lg">
                 <div className="flex flex-col gap-5 items-start">
-                  <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="item-1">
-                      <AccordionTrigger>سعر الدرس</AccordionTrigger>
-                      <AccordionContent>
-                        {lesson.price}.00 جنيها
-                      </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-2">
-                      <AccordionTrigger>الوحدة </AccordionTrigger>
-                      <AccordionContent>الوحدة {lesson.unit}</AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-3">
-                      <AccordionTrigger>الصف </AccordionTrigger>
-                      <AccordionContent>{lesson.classroom}</AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-4">
-                      <AccordionTrigger>القسم</AccordionTrigger>
-                      <AccordionContent>{lesson.section}</AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+                  <div className="p-4 w-full">
+                    <h3 className="text-lg font-semibold mb-2">
+                      {lesson.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">{lesson.desc}</p>
+
+                    <div className="text-sm text-gray-600 mb-2">
+                      <span className="font-bold">سعر الدرس:</span>{" "}
+                      {lesson.price} جنيها
+                    </div>
+                    <div className="text-sm text-gray-600 mb-2">
+                      <span className="font-bold">الوحدة:</span> {lesson.unit}
+                    </div>
+                    <div className="text-sm text-gray-600 mb-2">
+                      <span className="font-bold">الصف:</span>{" "}
+                      {lesson.classroom}
+                    </div>
+                    <div className="text-sm text-gray-600 mb-4">
+                      <span className="font-bold">القسم:</span> {lesson.section}
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <span
+                        className={`text-white px-3 py-1 rounded-full text-xs ${
+                          lesson.status === "free"
+                            ? "bg-green-500"
+                            : "bg-red-500"
+                        }`}
+                      >
+                        {lesson.isPaid ? "مدفوع" : "مجاني"}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className="flex flex-row items-center justify-center">
+                {!user ? (
+                  ""
+                ) : lesson?.isPaid ? (
+                  ""
+                ) : (
+                  <Link href={`/lessons/watch/${lesson?._id}`}>
+                    <Button className="m-5">مشاهدة</Button>
+                  </Link>
+                )}
 
-              {!user ? (
-                ""
-              ) : lesson?.status === "free" ? (
-                <Link href={`/lessons/watch/${lesson?._id}`}>
-                  <Button className="m-5">مشاهدة</Button>
-                </Link>
-              ) : (
-                ""
-              )}
-
-              {user?.user?.type === "teacher" ? (
-                <Link href={`/add-assignment/${lesson._id}`}>
-                  <Button>اضافة واجب</Button>
-                </Link>
-              ) : (
-                ""
-              )}
+                {user?.user?.type === "teacher" ? (
+                  <Link href={`/add-assignment/${lesson._id}`}>
+                    <Button>اضافة واجب</Button>
+                  </Link>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           ))
         )}

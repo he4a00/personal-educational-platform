@@ -21,7 +21,7 @@ import api from "../utils/api";
 import { classes } from "../constants";
 import { useToast } from "@/components/ui/use-toast";
 
-const CreateSummaryForm = ({ student }: any) => {
+const AddLessonForm = ({ student }: any) => {
   const form = useForm({
     resolver: zodResolver(LessonValidation),
     defaultValues: {
@@ -30,7 +30,7 @@ const CreateSummaryForm = ({ student }: any) => {
       classroom: "",
       videoURL: "",
       price: "",
-      isPaid: false,
+      isPaid: "",
       desc: "",
       section: "",
     },
@@ -69,11 +69,11 @@ const CreateSummaryForm = ({ student }: any) => {
     formData.append("videoURL", selectedFile as Blob);
     formData.append("title", values.title);
     formData.append("unit", values.unit);
-    formData.append("isPaid", String(values.isPaid));
+    formData.append("isPaid", values.isPaid); // Convert boolean to string
     formData.append("desc", values.desc);
     formData.append("price", values.price);
     formData.append("classroom", values.classroom);
-    formData.append("section", values.classroom);
+    formData.append("section", values.section);
     createLesson(formData);
   }
 
@@ -215,32 +215,58 @@ const CreateSummaryForm = ({ student }: any) => {
           />
         </div>
 
-        <FormField
-          control={form.control}
-          name="videoURL"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-semibold text-gray-700">
-                اضافة الفيديو
-              </FormLabel>
-              <FormControl>
-                <Input
-                  type="file"
-                  onChange={handleFileChange}
-                  value={field.value}
-                  onBlur={field.onBlur}
-                  name={field.name}
-                  ref={field.ref}
-                  className="border border-gray-300 bg-white text-gray-900 p-2 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                />
-              </FormControl>
-              {selectedFile && (
-                <span className="text-gray-900">{selectedFile.name}</span>
-              )}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-row gap-4 w-full">
+          <FormField
+            control={form.control}
+            name="videoURL"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold text-gray-700">
+                  اضافة الفيديو
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    type="file"
+                    onChange={handleFileChange}
+                    value={field.value}
+                    onBlur={field.onBlur}
+                    name={field.name}
+                    ref={field.ref}
+                    className="border border-gray-300 bg-white text-gray-900 p-2 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  />
+                </FormControl>
+                {selectedFile && (
+                  <span className="text-gray-900">{selectedFile.name}</span>
+                )}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="isPaid"
+            render={({ field }) => (
+              <FormItem className="">
+                <FormLabel className="">حالة الدفع</FormLabel>
+                <FormControl>
+                  <select
+                    className="border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  >
+                    <option value="" disabled>
+                      اختر حالة الدفع
+                    </option>
+                    <option value="true">مدفوع</option>
+                    <option value="false">غير مدفوع</option>
+                  </select>
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <Button variant="outline" disabled={isPending} type="submit">
           اضافة
@@ -256,4 +282,4 @@ const CreateSummaryForm = ({ student }: any) => {
   );
 };
 
-export default CreateSummaryForm;
+export default AddLessonForm;

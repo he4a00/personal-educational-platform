@@ -6,7 +6,7 @@ export const LessonValidation = z.object({
   videoURL: z.string(),
   unit: z.string(),
   price: z.string(),
-  isPaid: z.boolean(),
+  isPaid: z.string(),
   desc: z.string(),
   section: z.string(),
 });

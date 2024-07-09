@@ -50,25 +50,30 @@ const UnlockedLesson = () => {
   }
 
   return (
-    <div className="flex flex-col items-center gap-10">
-      <div className="flex flex-col gap-5">
-        <h1 className="text-3xl font-bold">{unlockedLesson?.title}</h1>
-      </div>
-      <div>
-        <ReactPlayer
-          width="100%"
-          height="auto"
-          url={unlockedLesson?.videoURL}
-          controls={true}
-          light={false}
-          config={{
-            file: {
-              attributes: {
-                controlsList: "nodownload",
+    <div className="flex flex-col items-center min-h-screen p-6">
+      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-3xl">
+        <h1 className="text-4xl font-bold text-center mb-4">
+          {unlockedLesson?.title}
+        </h1>
+        <div className="flex justify-center mb-4">
+          <ReactPlayer
+            width="100%"
+            height="auto"
+            url={unlockedLesson?.videoURL}
+            controls={true}
+            light={false}
+            config={{
+              file: {
+                attributes: {
+                  controlsList: "nodownload",
+                },
               },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
+        <p className="text-lg text-gray-700 text-center">
+          {unlockedLesson?.desc}
+        </p>
       </div>
     </div>
   );

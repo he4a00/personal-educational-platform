@@ -12,7 +12,12 @@ const Hero = () => {
   return (
     <div className="flex flex-col md:flex-row justify-between items-center p-28 container">
       <div>
-        <Image width={600} height={600} alt="" src={hero} />
+        <Image
+          width={600}
+          height={600}
+          alt="hero image"
+          src="https://res.cloudinary.com/dortdlynv/image/upload/v1720606966/hero_k7droq.png"
+        />
       </div>
       <div className="flex flex-col gap-2">
         <h1 className="text-5xl font-bold  text-gray-500">

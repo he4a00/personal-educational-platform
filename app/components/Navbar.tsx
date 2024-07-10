@@ -17,6 +17,14 @@ import { useUserContext } from "../context/UserContext";
 import logo from "../images/logo.png";
 import Image from "next/image";
 
+interface ButtonProps {
+  href: string;
+  text: string;
+  IconComponent: any;
+  variant?: "default" | "destructive" | "outline";
+  onClick?: () => void;
+}
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout, user }: any = useUserContext();
@@ -27,27 +35,43 @@ const Navbar = () => {
 
   const loggedIn = !!user;
 
+  const renderLinkButton = ({
+    href,
+    text,
+    IconComponent,
+    variant = "default",
+    onClick,
+  }: ButtonProps) => (
+    <Link href={href}>
+      <Button
+        className={`flex gap-2 p-7 w-full ${
+          variant === "destructive" ? "variant-destructive" : ""
+        }`}
+        onClick={onClick}
+      >
+        {text}
+        <IconComponent />
+      </Button>
+    </Link>
+  );
+
   return (
     <div className="container">
-      {/* Navbar */}
       <div className="flex justify-between items-center h-16 p-4 md:hidden">
-        {/* Hamburger icon for mobile */}
         <button onClick={toggleSidebar} className="p-2">
           {isOpen ? <ChevronsLeftRight /> : <MenuSquare />}
         </button>
         <Link href="/">
-          <Image src={logo} width={150} height={150} alt="" />
+          <Image src={logo} width={150} height={150} alt="Logo" />
         </Link>
       </div>
 
-      {/* Sidebar */}
       <div
         className={`md:hidden fixed inset-0 transition-all duration-300 ease-in-out z-[999999] transform ${
           isOpen ? "block" : "hidden"
         }`}
       >
         <div className="flex flex-col h-13 w-full ">
-          {/* Close button */}
           <button
             onClick={toggleSidebar}
             className="p-4 text-xl font-semibold self-end"
@@ -57,160 +81,108 @@ const Navbar = () => {
           <div className="flex flex-col p-4 gap-4 bg-gradient-to-r from-cyan-500 to-blue-500">
             {!loggedIn ? (
               <>
-                <Link href="/sign-in">
-                  <Button className="flex gap-2 p-7 w-full">
-                    تسجيل الدخول
-                    <UserRoundCheck />
-                  </Button>
-                </Link>
-                <Link href="/sign-up">
-                  <Button className="flex gap-2 p-7 w-full">
-                    انشاء حساب
-                    <UserRoundCheck />
-                  </Button>
-                </Link>
+                {renderLinkButton({
+                  href: "/sign-in",
+                  text: "تسجيل الدخول",
+                  IconComponent: UserRoundCheck,
+                })}
+                {renderLinkButton({
+                  href: "/sign-up",
+                  text: "انشاء حساب",
+                  IconComponent: UserPlus,
+                })}
               </>
             ) : (
               <>
-                {/* Logout button if logged in */}
-                <Button
-                  variant="destructive"
-                  className="flex gap-2 p-7 w-full"
-                  onClick={() => logout()}
-                >
-                  تسجيل الخروج
-                  <LogOut />
-                </Button>
-                <Link href={`/lessons/user/${user?.user?._id}`}>
-                  <Button
-                    variant="destructive"
-                    className="flex gap-2 p-7 w-full"
-                  >
-                    الدروس
-                    <LogOut />
-                  </Button>
-                </Link>
-                <Link href={`/feedbacks/`}>
-                  <Button variant="outline" className="flex gap-2 p-7 w-full">
-                    اقتراح/مشكلة
-                    <Lightbulb />
-                  </Button>
-                </Link>
-
-                {/* Render 'Add Lesson' button if the user is a teacher */}
+                {renderLinkButton({
+                  href: "#",
+                  text: "تسجيل الخروج",
+                  IconComponent: LogOut,
+                  variant: "destructive",
+                  onClick: logout,
+                })}
+                {renderLinkButton({
+                  href: `/lessons/user/${user?.user?._id}`,
+                  text: "الدروس",
+                  IconComponent: Book,
+                })}
                 {user?.user?.type === "teacher" && (
                   <>
-                    <Link href="/add-lesson">
-                      <Button
-                        variant="destructive"
-                        className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
-                      >
-                        اضافة درس
-                        <UserPlus />
-                      </Button>
-                    </Link>
-                    <Link href="/unlock-lesson">
-                      <Button
-                        variant="destructive"
-                        className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
-                      >
-                        فتح درس
-                        <UserPlus />
-                      </Button>
-                    </Link>
-                    <Link href="/feedbacks/create-feedback">
-                      <Button
-                        variant="outline"
-                        className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
-                      >
-                        الاقتراحات/المشاكل
-                        <Projector />
-                      </Button>
-                    </Link>
+                    {renderLinkButton({
+                      href: "/add-lesson",
+                      text: "اضافة درس",
+                      IconComponent: UserPlus,
+                    })}
+                    {renderLinkButton({
+                      href: "/unlock-lesson",
+                      text: "فتح درس",
+                      IconComponent: UserPlus,
+                    })}
+                    {renderLinkButton({
+                      href: "/feedbacks/create-feedback",
+                      text: "الاقتراحات/المشاكل",
+                      IconComponent: Projector,
+                      variant: "outline",
+                    })}
                   </>
                 )}
               </>
             )}
           </div>
         </div>
-        {/* Overlay when sidebar is open */}
       </div>
 
-      {/* Main content */}
       <div className="hidden md:flex flex-row justify-between items-center h-16 p-4">
-        {/* Logo */}
-
-        {/* Buttons */}
         {loggedIn ? (
           <div className="flex gap-2">
-            <Button
-              variant="destructive"
-              className="flex gap-2 p-7"
-              onClick={() => logout()}
-            >
-              تسجيل الخروج
-              <LogOut />
-            </Button>
-            <Link href={`/lessons/user/${user?.user?._id}`}>
-              <Button className="flex gap-2 p-7">
-                الدروس
-                <Book />
-              </Button>
-            </Link>
-            <Link href={`/feedbacks/create-feedback`}>
-              <Button variant="outline" className="flex gap-2 p-7">
-                اقتراح/مشكلة
-                <Lightbulb />
-              </Button>
-            </Link>
+            {renderLinkButton({
+              href: "#",
+              text: "تسجيل الخروج",
+              IconComponent: LogOut,
+              variant: "destructive",
+              onClick: logout,
+            })}
+            {renderLinkButton({
+              href: `/lessons/user/${user?.user?._id}`,
+              text: "الدروس",
+              IconComponent: Book,
+            })}
             {user?.user?.type === "teacher" && (
               <>
-                <Link href="/add-lesson">
-                  <Button className="flex gap-2 p-7">
-                    اضافة درس
-                    <UserPlus />
-                  </Button>
-                </Link>
-                <Link href="/unlock-lesson">
-                  <Button className="flex gap-2 p-7">
-                    فتح درس
-                    <UserPlus />
-                  </Button>
-                </Link>
-                {/* <Link href="/feedbacks">
-                  <Button
-                    variant="destructive"
-                    className="flex gap-2 p-7 w-full transition-all duration-700 hover:bg-transparent hover:text-black z-100"
-                  >
-                    الاقتراحات/المشاكل
-                    <Projector />
-                  </Button>
-                </Link> */}
+                {renderLinkButton({
+                  href: "/add-lesson",
+                  text: "اضافة درس",
+                  IconComponent: UserPlus,
+                })}
+                {renderLinkButton({
+                  href: "/unlock-lesson",
+                  text: "فتح درس",
+                  IconComponent: UserPlus,
+                })}
+                {renderLinkButton({
+                  href: "/feedbacks",
+                  text: "الاقتراحات/المشاكل",
+                  IconComponent: Projector,
+                })}
               </>
             )}
           </div>
         ) : (
           <div className="flex flex-row gap-4">
-            <Link href="/sign-in">
-              <Button variant="outline" className="flex gap-2 p-7">
-                تسجيل الدخول
-                <UserRoundCheck />
-              </Button>
-            </Link>
-            <Link href="/sign-up">
-              <Button
-                size="default"
-                variant="outline"
-                className="flex gap-2 p-7"
-              >
-                انشاء حساب
-                <UserPlus />
-              </Button>
-            </Link>
+            {renderLinkButton({
+              href: "/sign-in",
+              text: "تسجيل الدخول",
+              IconComponent: UserRoundCheck,
+            })}
+            {renderLinkButton({
+              href: "/sign-up",
+              text: "انشاء حساب",
+              IconComponent: UserPlus,
+            })}
           </div>
         )}
         <Link href="/">
-          <Image src={logo} width={150} height={150} alt="" />
+          <Image src={logo} width={150} height={150} alt="Logo" />
         </Link>
       </div>
     </div>

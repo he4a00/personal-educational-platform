@@ -12,13 +12,7 @@ const Hero = () => {
   return (
     <div className="flex flex-col md:flex-row justify-between items-center p-28 container">
       <div>
-        <Image
-          width={600}
-          height={600}
-          alt=""
-          src={hero}
-          className="animate-bounce"
-        />
+        <Image width={600} height={600} alt="" src={hero} />
       </div>
       <div className="flex flex-col gap-2">
         <h1 className="text-5xl font-bold  text-gray-500">

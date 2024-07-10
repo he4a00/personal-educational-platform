@@ -12,10 +12,13 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const { toast }: any = useToast();
 
-  const login = async (email: string, password: string) => {
+  const login = async (phoneNumber: string, password: string) => {
     try {
       setLoading(true);
-      const { data } = await api.post("/users/login", { email, password });
+      const { data } = await api.post("/users/login", {
+        phoneNumber,
+        password,
+      });
       setUser(data);
       if (typeof window !== "undefined") {
         localStorage.setItem("user", JSON.stringify(data));

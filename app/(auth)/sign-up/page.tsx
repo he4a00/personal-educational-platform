@@ -13,7 +13,7 @@ import { useState } from "react";
 const SignUp = () => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [parentPhoneNumber, setParentPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [eduyear, setEduYear] = useState("");
@@ -27,7 +27,7 @@ const SignUp = () => {
           firstname,
           lastname,
           phoneNumber,
-          email,
+          parentPhoneNumber,
           password,
           eduyear,
         });
@@ -68,20 +68,20 @@ const SignUp = () => {
     <div
       style={{
         backgroundImage:
-          "url('https://img.freepik.com/free-photo/book-with-green-board-background_1150-3837.jpg?w=1380&t=st=1703534531~exp=1703535131~hmac=a4c2779a4acf7e1c0139775a8ee7d08903cbea8e0787d24492f0ff1aca1c1687')",
+          "url('https://img.freepik.com/free-vector/realistic-math-chalkboard-background_23-2148169719.jpg?t=st=1720534960~exp=1720538560~hmac=2fbe269e90af3367bc7590c85677615480a6882869566e87e9085455dd0e7576&w=826')",
         backgroundAttachment: "fixed",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="w-full h-full flex items-center justify-center overflow-hidden"
+      className="w-full h-full flex items-center justify-center p-4 md:p-12 overflow-hidden"
     >
-      <div className="container mx-auto">
+      <div className="md:container mx-auto">
         <div className="flex justify-center md:px-6 my-12">
-          <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
+          <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none shadow-lg">
             <div className="text-black px-6 pt-6">
-              <div className="flex gap-3 items-center ">
+              <div className="flex gap-3 items-center">
                 <Boxes className="text-blue-600" />
-                <h2 className="text-black  text-2xl font-bold">
+                <h2 className="text-black text-2xl font-bold">
                   {" "}
                   انشئ حسابك الان
                 </h2>
@@ -89,60 +89,60 @@ const SignUp = () => {
               <p>قم بأنشاء حسابك الان حتي تستطيع الدخول الي المنصة</p>
             </div>
             <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-              <div className="mb-4">
-                <div className="md:ml-2">
+              <div className="mb-4 flex flex-wrap -mx-2">
+                <div className="w-full md:w-1/2">
                   <label className="block mb-2 text-sm font-bold text-gray-700">
                     الاسم الاول
                   </label>
                   <input
                     required
-                    className="w-full p-4 mb-3 text-sm leading-tight text-gray-700 border rounded  appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full md:p-4 p-2 mb-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
                     placeholder="احمد"
                     value={firstname}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                 </div>
-                <div className="md:ml-2">
+                <div className="w-full md:w-1/2 px-2">
                   <label className="block mb-2 text-sm font-bold text-gray-700">
                     الاسم الاخير
                   </label>
                   <input
                     required
-                    className="w-full p-4 mb-3 text-sm leading-tight text-gray-700 border rounded  appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full md:p-4 p-2 md:mb-3 mb-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
                     placeholder="هاشم"
                     value={lastname}
                     onChange={(e) => setLastName(e.target.value)}
                   />
                 </div>
-                <div className="md:ml-2">
+                <div className="w-full md:w-1/2 px-2">
                   <label className="block mb-2 text-sm font-bold text-gray-700">
                     رقم الهاتف
                   </label>
                   <input
                     required
-                    className="w-full p-4 mb-3 text-sm leading-tight text-gray-700 border rounded  appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full md:p-4 mb-2 p-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
                     placeholder="01001000101"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </div>
-                <div className="md:ml-2">
+                <div className="w-full md:w-1/2 px-2">
                   <label className="block mb-2 text-sm font-bold text-gray-700">
-                    البريد الالكتروني
+                    رقم ولي الامر
                   </label>
                   <input
                     required
-                    className="w-full p-4 mb-3 text-sm leading-tight text-gray-700 border rounded  appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full md:p-4 p-2 mb-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
-                    placeholder="test13@gmail.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="01003030303"
+                    value={parentPhoneNumber}
+                    onChange={(e) => setParentPhoneNumber(e.target.value)}
                   />
                 </div>
-                <div className="md:ml-2">
+                <div className="w-full md:w-1/2 px-2">
                   <label className="block mb-2 text-sm font-bold text-gray-700">
                     الصف الدراسي
                   </label>
@@ -166,7 +166,7 @@ const SignUp = () => {
                     </option>
                   </select>
                 </div>
-                <div className="mb-4 md:mr-2 md:mb-0">
+                <div className="w-full md:w-1/2 px-2">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
                     htmlFor="password"
@@ -175,13 +175,12 @@ const SignUp = () => {
                   </label>
                   <input
                     required
-                    className="w-full p-4 mb-3 text-sm leading-tight text-gray-700 border  rounded  appearance-none focus:outline-none"
+                    className="w-full md:p-4 p-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="password"
                     placeholder="******************"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <p className="text-xs italic text-red-500">ادخل كلمة السر</p>
                 </div>
               </div>
 

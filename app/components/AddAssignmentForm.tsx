@@ -4,6 +4,7 @@ import api from "../utils/api";
 import { useParams } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
 
 interface Answer {
@@ -14,22 +15,23 @@ interface Answer {
 const AddAssignmentForm = () => {
   const [questions, setQuestions] = useState<string[]>([""]);
   const [answers, setAnswers] = useState<Answer[][]>([[]]);
+  const [questionImages, setQuestionImages] = useState<File[]>([]);
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
 
-  const handleQuestionChange = (index: number, text: string) => {
-    const updatedQuestions = [...questions];
-    updatedQuestions[index] = text;
-    setQuestions(updatedQuestions);
+  const handleQuestionChange = (index: number, qImage: string) => {
+    const updatedImages = [...questionImages];
+    updatedImages[index] = qImage;
+    setQuestionImages(updatedImages);
   };
 
   const handleAnswerChange = (
     questionIndex: number,
     answerIndex: number,
-    text: string
+    qImage: string
   ) => {
     const updatedAnswers = [...answers];
-    updatedAnswers[questionIndex][answerIndex].ansText = text;
+    updatedAnswers[questionIndex][answerIndex].ansText = qImage;
     setAnswers(updatedAnswers);
   };
 
@@ -42,17 +44,28 @@ const AddAssignmentForm = () => {
 
   const { mutate: createAssignment, isPending } = useMutation({
     mutationFn: async () => {
-      try {
-        const formattedFormData = {
-          text: questions,
+      const formData = new FormData();
+      questionImages.forEach((image, index) => {
+        formData.append(`qImage_${index}`, image);
+      });
+      formData.append(
+        "data",
+        JSON.stringify({
           answers: answers.map((answerArray) =>
             answerArray.map((answer) => ({
               ansText: answer.ansText,
               isCorrect: answer.isCorrect,
             }))
           ),
-        };
-        const { data } = await api.post(`/assignment/${id}`, formattedFormData);
+        })
+      );
+
+      try {
+        const { data } = await api.post(`/assignment/${id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         return data;
       } catch (error: any) {
         console.log(error);
@@ -68,7 +81,6 @@ const AddAssignmentForm = () => {
       console.error("Error:", error);
     },
   });
-
   const addQuestion = () => {
     setQuestions([...questions, ""]);
     setAnswers([...answers, []]);
@@ -96,10 +108,11 @@ const AddAssignmentForm = () => {
       {questions.map((question, index) => (
         <div key={`question-${index}`} className="mb-4">
           <input
-            type="text"
-            value={question}
-            onChange={(e) => handleQuestionChange(index, e.target.value)}
-            placeholder={`السؤال ${index + 1}`}
+            type="file"
+            accept="image/*"
+            onChange={(e) =>
+              handleQuestionChange(index, e.target.files?.[0] as File)
+            }
             className="w-full px-3 py-2 border rounded-md"
           />
           {answers[index].map((answer, ansIndex) => (

@@ -16,7 +16,7 @@ interface UserData {
     _id: string;
     firstname: string;
     lastname: string;
-    email: string;
+    parentPhoneNumber: string;
     eduyear: string;
     phoneNumber: string;
     type: string;
@@ -99,7 +99,9 @@ const UserUnlockedLessons = () => {
                     مشاهدة
                   </Button>
                 </Link>
-                <Link href={`/lessons/assignments/${lessonData.lessonId?._id}`}>
+                <Link
+                  href={`/lessons/assignements/${lessonData.lessonId?._id}`}
+                >
                   <Button className="bg-green-500 text-white hover:bg-green-600">
                     الواجب
                   </Button>

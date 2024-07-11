@@ -118,12 +118,6 @@ const Navbar = () => {
                       text: "فتح درس",
                       IconComponent: UserPlus,
                     })}
-                    {renderLinkButton({
-                      href: "/feedbacks/create-feedback",
-                      text: "الاقتراحات/المشاكل",
-                      IconComponent: Projector,
-                      variant: "outline",
-                    })}
                   </>
                 )}
               </>
@@ -158,11 +152,6 @@ const Navbar = () => {
                   href: "/unlock-lesson",
                   text: "فتح درس",
                   IconComponent: UserPlus,
-                })}
-                {renderLinkButton({
-                  href: "/feedbacks",
-                  text: "الاقتراحات/المشاكل",
-                  IconComponent: Projector,
                 })}
               </>
             )}

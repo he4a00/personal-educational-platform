@@ -1,9 +1,10 @@
 "use client";
 
 import Loader from "@/app/components/Loader";
+import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import ReactPlayer from "react-player";
 
 interface LessonData {
@@ -20,12 +21,13 @@ interface LessonData {
 const UnlockedLesson = () => {
   const { id } = useParams<{ id: string }>();
 
-  const {
-    data: unlockedLesson,
-    isLoading,
-    isError,
-    error, // Capture error for debugging
-  } = useQuery<LessonData, Error>({
+  const { user }: any = useUserContext();
+
+  if (!user) {
+    redirect("/");
+  }
+
+  const { data: unlockedLesson, isLoading } = useQuery<LessonData, Error>({
     queryKey: ["classLessons", id],
     queryFn: async () => {
       try {

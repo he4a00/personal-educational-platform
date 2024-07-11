@@ -58,13 +58,15 @@ const Assignment = () => {
   if (isError || !assignments || assignments.length === 0) {
     return (
       <div className="w-full h-full flex items-center justify-center p-3">
-        <h1 className="text-3xl font-bold">عذرا ، لا يوجد أي دروس متاحة لك.</h1>
+        <h1 className="text-3xl font-bold">
+          عذرا ، لا يوجد أي واجبات متاحة لك.
+        </h1>
       </div>
     );
   }
 
   if (isLoading) {
-    return <Loader />; // Optionally show a loading indicator
+    return <Loader />;
   }
 
   const questions = assignments.reduce((acc: any, current: any) => {

@@ -3,7 +3,7 @@ import api from "./api";
 const refreshToken = async () => {
   try {
     const response = await api.post(
-      `/users/refresh-token`,
+      `/users/refreshToken`,
       {},
       { withCredentials: true }
     );

@@ -24,34 +24,22 @@ const api = axios.create({
   },
 });
 
-// Add a request interceptor
-api.interceptors.request.use(
-  async (config) => {
-    const userString = localStorage.getItem("user");
-    if (userString) {
-      const user = JSON.parse(userString);
-      if (user && user.accessToken) {
-        config.headers.Authorization = `Bearer ${user.accessToken}`;
-      }
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-// Add a response interceptor
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      const newAccessToken = await refreshToken();
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${newAccessToken}`;
-      originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-      return axios(originalRequest);
+      try {
+        const newAccessToken = await refreshToken();
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${newAccessToken}`;
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+        return axios(originalRequest);
+      } catch (refreshError) {
+        // Handle token refresh failure, e.g., log the user out
+      }
     }
     return Promise.reject(error);
   }

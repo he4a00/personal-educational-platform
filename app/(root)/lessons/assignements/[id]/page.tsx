@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Loader from "@/app/components/Loader";
+import Image from "next/image";
 
 const Assignment = () => {
   const { id } = useParams<{ id: string }>();
@@ -78,10 +79,15 @@ const Assignment = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-10">
       {!showScore && currentQuestion ? (
-        <div className="p-6 bg-white shadow-md rounded-md mb-8 w-96">
-          <h2 className="text-lg font-semibold mb-4 text-center">
-            {currentQuestion.question.text}
-          </h2>
+        <div className="p-6 bg-white shadow-md rounded-md mb-8 w-[40rem]">
+          <Image
+            height={400}
+            width={400}
+            className="w-full p-5"
+            alt=""
+            src={currentQuestion.question.qImage}
+          />
+
           <div className="grid grid-cols-1 gap-4">
             {currentQuestion.question.answers.map((answer: any, idx: any) => (
               <Button

@@ -4,7 +4,6 @@ import api from "../utils/api";
 import { useParams } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
-
 import { Button } from "@/components/ui/button";
 
 interface Answer {
@@ -15,11 +14,11 @@ interface Answer {
 const AddAssignmentForm = () => {
   const [questions, setQuestions] = useState<string[]>([""]);
   const [answers, setAnswers] = useState<Answer[][]>([[]]);
-  const [questionImages, setQuestionImages] = useState<File[]>([]);
+  const [questionImages, setQuestionImages] = useState<(File | null)[]>([null]);
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
 
-  const handleQuestionChange = (index: number, qImage: string) => {
+  const handleQuestionChange = (index: number, qImage: File | null) => {
     const updatedImages = [...questionImages];
     updatedImages[index] = qImage;
     setQuestionImages(updatedImages);
@@ -28,10 +27,10 @@ const AddAssignmentForm = () => {
   const handleAnswerChange = (
     questionIndex: number,
     answerIndex: number,
-    qImage: string
+    ansText: string
   ) => {
     const updatedAnswers = [...answers];
-    updatedAnswers[questionIndex][answerIndex].ansText = qImage;
+    updatedAnswers[questionIndex][answerIndex].ansText = ansText;
     setAnswers(updatedAnswers);
   };
 
@@ -45,8 +44,8 @@ const AddAssignmentForm = () => {
   const { mutate: createAssignment, isPending } = useMutation({
     mutationFn: async () => {
       const formData = new FormData();
-      questionImages.forEach((image, index) => {
-        formData.append(`qImage_${index}`, image);
+      questionImages.forEach((qImage, index) => {
+        if (qImage) formData.append("qImage", qImage);
       });
       formData.append(
         "data",
@@ -81,9 +80,11 @@ const AddAssignmentForm = () => {
       console.error("Error:", error);
     },
   });
+
   const addQuestion = () => {
     setQuestions([...questions, ""]);
     setAnswers([...answers, []]);
+    setQuestionImages([...questionImages, null]);
   };
 
   const addAnswer = (questionIndex: number) => {

@@ -8,9 +8,12 @@ const refreshToken = async () => {
       { withCredentials: true }
     );
     const newAccessToken = response.data.accessToken;
-    const user = JSON.parse(localStorage.getItem("user"));
-    user.accessToken = newAccessToken;
-    localStorage.setItem("user", JSON.stringify(user));
+    const userString = localStorage.getItem("user");
+    if (userString) {
+      const user = JSON.parse(userString);
+      user.accessToken = newAccessToken;
+      localStorage.setItem("user", JSON.stringify(user));
+    }
     return newAccessToken;
   } catch (error) {
     console.error("Unable to refresh token", error);

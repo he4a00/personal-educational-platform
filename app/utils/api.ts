@@ -1,11 +1,14 @@
 import axios from "axios";
 import refreshToken from "./refrestToken";
 
-let parsedToken = null;
+let parsedToken: string | null = null;
 
 if (typeof window !== "undefined") {
-  const user = localStorage.getItem("user");
-  parsedToken = user ? JSON.parse(user)?.accessToken : null;
+  const userString = localStorage.getItem("user");
+  if (userString) {
+    const user = JSON.parse(userString);
+    parsedToken = user?.accessToken ?? null;
+  }
 }
 
 const API_BASE_URL =
@@ -24,9 +27,12 @@ const api = axios.create({
 // Add a request interceptor
 api.interceptors.request.use(
   async (config) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user && user.accessToken) {
-      config.headers.Authorization = `Bearer ${user.accessToken}`;
+    const userString = localStorage.getItem("user");
+    if (userString) {
+      const user = JSON.parse(userString);
+      if (user && user.accessToken) {
+        config.headers.Authorization = `Bearer ${user.accessToken}`;
+      }
     }
     return config;
   },

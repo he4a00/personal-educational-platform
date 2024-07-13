@@ -23,28 +23,4 @@ const api = axios.create({
   },
 });
 
-// Example using Axios interceptor
-axios.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      try {
-        const response = await axios.get(API_BASE_URL || "");
-        if (response.status === 200) {
-          axios.defaults.headers.common["Authorization"] =
-            "Bearer " + response.data.accessToken;
-          originalRequest.headers["Authorization"] =
-            "Bearer " + response.data.accessToken;
-          return axios(originalRequest);
-        }
-      } catch (refreshError) {
-        console.error("Refresh token failed:", refreshError);
-      }
-    }
-    return Promise.reject(error);
-  }
-);
-
 export default api;

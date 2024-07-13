@@ -31,9 +31,7 @@ axios.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const response = await axios.get(
-          "http://localhost:4040/api/users/refreshToken"
-        );
+        const response = await axios.get(API_BASE_URL || "");
         if (response.status === 200) {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.accessToken;

@@ -6,8 +6,6 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "../components/Navbar";
 import { UserProvider } from "../context/UserContext";
 
-// import Footer from "../components/Footer";
-
 const inter = Readex_Pro({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {

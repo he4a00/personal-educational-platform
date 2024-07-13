@@ -1,8 +1,5 @@
 "use client";
-import LessonsSearch from "@/app/components/LessonSearch";
-import UnlockForAll from "@/app/components/UnlockForAll";
 import UnlockLesson from "@/app/components/UnlockLesson";
-import UsersSearch from "@/app/components/UsersSearch";
 import { useUserContext } from "@/app/context/UserContext";
 import { redirect } from "next/navigation";
 
@@ -21,8 +18,6 @@ const AddLesson = () => {
         <h1 className="text-3xl font-bold text-black">اضافة الدرس للطالب</h1>
       </div>
       <div className="flex flex-col justify-center items-center">
-        <UsersSearch />
-        <LessonsSearch />
         <UnlockLesson />
         {/* <UnlockForAll /> */}
       </div>

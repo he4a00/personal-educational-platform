@@ -16,11 +16,11 @@ const SignIn = () => {
     login(phoneNumber, password);
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     redirect("/");
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      redirect("/");
+    }
+  }, [user]);
 
   return (
     <div

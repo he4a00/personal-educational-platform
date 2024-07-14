@@ -56,6 +56,10 @@ const Assignment = () => {
     },
   });
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   if (isError || !assignments || assignments.length === 0) {
     return (
       <div className="w-full h-full flex items-center justify-center p-3">
@@ -66,10 +70,6 @@ const Assignment = () => {
     );
   }
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   const questions = assignments.reduce((acc: any, current: any) => {
     return acc.concat(current.questions);
   }, []);
@@ -77,16 +77,18 @@ const Assignment = () => {
   const currentQuestion = questions[questionList];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-10">
+    <div className="flex flex-col items-center justify-center min-h-screen py-10 px-4 sm:px-6 lg:px-8">
       {!showScore && currentQuestion ? (
-        <div className="p-6 bg-white shadow-md rounded-md mb-8 w-[40rem]">
-          <Image
-            height={400}
-            width={400}
-            className="w-full p-5"
-            alt=""
-            src={currentQuestion.question.qImage}
-          />
+        <div className="p-6 bg-white shadow-md rounded-md mb-8 w-full max-w-2xl">
+          <div className="w-full mb-6">
+            <Image
+              height={400}
+              width={400}
+              className="w-full h-auto object-contain"
+              alt=""
+              src={currentQuestion.question.qImage}
+            />
+          </div>
 
           <div className="grid grid-cols-1 gap-4">
             {currentQuestion.question.answers.map((answer: any, idx: any) => (

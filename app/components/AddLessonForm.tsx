@@ -50,7 +50,11 @@ const AddLessonForm = ({ student }: any) => {
         throw new Error(error);
       }
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
+      toast({
+        title: "تم أضافة هذا الدرس للطالب     ",
+        variant: "default",
+      });
       router.push("/");
     },
     onError: (err: any) => {

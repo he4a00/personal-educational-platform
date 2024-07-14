@@ -7,8 +7,8 @@ import { redirect, useParams } from "next/navigation";
 import algebra from "../../../../images/algebra.jpg"; // Make sure to replace with actual image paths if different
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Loader } from "lucide-react";
 import { useUserContext } from "@/app/context/UserContext";
+import Loader from "@/app/components/Loader";
 
 interface UserData {
   _id: string;
@@ -54,18 +54,17 @@ const UserUnlockedLessons = () => {
     },
   });
 
-  if (isError || !userUnlockedLessons || userUnlockedLessons.length === 0) {
-    return (
-      <div className="w-full h-full flex items-center justify-center p-3">
-        <h1 className="text-3xl font-bold">عذرا ، لا يوجد أي دروس متاحة لك.</h1>
-      </div>
-    );
-  }
-
   if (isLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
         <Loader />
+      </div>
+    );
+  }
+  if (isError || !userUnlockedLessons || userUnlockedLessons.length === 0) {
+    return (
+      <div className="w-full h-full flex items-center justify-center p-3">
+        <h1 className="text-3xl font-bold">عذرا ، لا يوجد أي دروس متاحة لك.</h1>
       </div>
     );
   }

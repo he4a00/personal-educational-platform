@@ -41,6 +41,10 @@ const UnlockLesson = () => {
       }
     },
     onSuccess: () => {
+      toast({
+        title: "تم أضافة هذا الدرس للطالب     ",
+        variant: "default",
+      });
       router.push("/");
     },
     onError: (err: any) => {

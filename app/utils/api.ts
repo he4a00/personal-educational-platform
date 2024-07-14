@@ -50,7 +50,6 @@ api.interceptors.response.use(
 
         return api(originalRequest);
       } catch (refreshError) {
-        // Handle token refresh error, e.g., log out user, redirect to login
         console.error("Token refresh failed", refreshError);
         return Promise.reject(refreshError);
       }

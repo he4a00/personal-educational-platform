@@ -11,8 +11,6 @@ const AddExam = () => {
   //     redirect("/");
   //   }
 
-  console.log(user?.user?.type);
-
   //   if (user?.user?.type === "student") {
   //     redirect("/");
   //   }

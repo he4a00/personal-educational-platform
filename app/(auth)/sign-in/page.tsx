@@ -33,7 +33,7 @@ const SignIn = () => {
       }}
       className="w-full h-full min-h-screen flex items-center justify-center bg"
     >
-      <div className="container mx-auto">
+      <div className="mx-auto">
         <div className="flex justify-center px-6 my-12">
           <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
             <div className="text-black px-6 pt-6">

@@ -14,9 +14,7 @@ const MarkIsReadButton = ({ feedbackId, text, isRead }: ReadButtonProps) => {
       const { data } = await api.patch(`/feedbacks/${feedbackId}`);
       return data;
     },
-    onSuccess: (data) => {
-      console.log(data);
-    },
+    onSuccess: (data) => {},
   });
   return (
     <Button disabled={isPending || isRead === true} onClick={() => markRead()}>

@@ -1,10 +1,10 @@
-import logo from "@/app/images/logo.png";
-import Image from "next/image";
-
 const Loader = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
-      <span className="animate-spin relative flex h-20 w-20 rounded-sm bg-purple-600 opacity-75"></span>
+    <div className="flex space-x-2 justify-center items-center  h-screen dark:invert">
+      <span className="sr-only">Loading...</span>
+      <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+      <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+      <div className="h-8 w-8 bg-black rounded-full animate-bounce"></div>
     </div>
   );
 };

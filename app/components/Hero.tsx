@@ -27,8 +27,8 @@ const Hero = () => {
           هاشم شكري
         </h6>
         <p className="md:text-3xl text-xl font-semibold text-gray-500 p-3 ">
-          منصة مختصة في الغوص في
-          <br /> عالم الرياضيات
+          استكشاف الرياضيات ،
+          <br /> تمكين العقول
         </p>
         {!user ? (
           <Link href="/sign-in">

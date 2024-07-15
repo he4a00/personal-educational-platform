@@ -1,11 +1,11 @@
 "use client";
 
 import api from "@/app/utils/api";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import algebra from "@/app/images/algebra.jpg";
 import {
   Accordion,
@@ -43,9 +43,12 @@ const LessonsByUnit = () => {
 
   const { user }: any = useUserContext();
 
+  // Invalidate the query whenever the class parameters change
+
   const {
     data: classLessons,
     isLoading,
+    isFetching,
     isError,
   } = useQuery<LessonProps, Error>({
     queryKey: ["classLessons"],
@@ -62,7 +65,7 @@ const LessonsByUnit = () => {
     },
   });
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <Loader />;
   }
 

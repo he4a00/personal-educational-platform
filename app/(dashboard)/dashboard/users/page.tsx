@@ -22,7 +22,7 @@ const Users = () => {
   const [limit, setLimit] = useState(5);
 
   const { data: usersData, isLoading } = useQuery({
-    queryKey: ["users", searchParam, sortParam, page],
+    queryKey: ["users", searchParam, sortParam, page, limit],
     queryFn: async () => {
       let endpoint = `/users`;
       const params = [];

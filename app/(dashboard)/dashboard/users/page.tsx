@@ -18,9 +18,11 @@ import SelectSorting from "@/app/components/SelectSorting";
 const Users = () => {
   const [searchParam, setSearchParams] = useState("");
   const [sortParam, setSortParam] = useState("");
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
 
   const { data: usersData, isLoading } = useQuery({
-    queryKey: ["users", searchParam, sortParam],
+    queryKey: ["users", searchParam, sortParam, page],
     queryFn: async () => {
       let endpoint = `/users`;
       const params = [];
@@ -38,8 +40,10 @@ const Users = () => {
     },
   });
 
+  const totalPages = usersData ? Math.ceil(usersData.usersCount / limit) : 1;
   return (
     <div className="p-5">
+      <h1 className="mb-5"> عدد الطلاب: {usersData?.usersCount}</h1>
       <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
         <Input
           type="text"
@@ -87,6 +91,25 @@ const Users = () => {
           )}
         </TableBody>
       </Table>
+      <div className="mt-4 flex justify-between items-center">
+        <button
+          className="px-4 py-2 bg-gray-300 rounded"
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          disabled={page === 1}
+        >
+          Previous
+        </button>
+        <span>
+          Page {page} of {totalPages}
+        </span>
+        <button
+          className="px-4 py-2 bg-gray-300 rounded"
+          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={page === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

@@ -32,6 +32,7 @@ const Users = () => {
       if (sortParam) {
         params.push(`sort=${sortParam}`);
       }
+      params.push(`page=${page}`);
       if (params.length > 0) {
         endpoint += `?${params.join("&")}`;
       }

@@ -118,6 +118,11 @@ const Navbar = () => {
                       text: "فتح درس",
                       IconComponent: UserPlus,
                     })}
+                    {renderLinkButton({
+                      href: "/dashboard",
+                      text: " لوحة التحكم",
+                      IconComponent: UserPlus,
+                    })}
                   </>
                 )}
               </>
@@ -151,6 +156,11 @@ const Navbar = () => {
                 {renderLinkButton({
                   href: "/unlock-lesson",
                   text: "فتح درس",
+                  IconComponent: UserPlus,
+                })}
+                {renderLinkButton({
+                  href: "/dashboard",
+                  text: " لوحة التحكم",
                   IconComponent: UserPlus,
                 })}
               </>

@@ -8,7 +8,7 @@ import { classesInfo } from "../constants";
 const Classes = () => {
   return (
     <>
-      <div className="p-10">
+      <div className="p-10 pt-40">
         <div
           className="flex flex-col items-center justify-center p-10
       "
@@ -25,10 +25,7 @@ const Classes = () => {
             height={40}
           />
         </div>
-        <div
-          className="grid md:grid-cols-3 grid-cols-1 gap-4 p-3 bg-gray-300 rounded-lg"
-          style={{ backgroundColor: "rgba(169, 169, 169, 0.6)" }}
-        >
+        <div className="grid md:grid-cols-3 grid-cols-1 gap-4 p-3 gap-x-16 rounded-lg">
           {classesInfo.map((classItem, index) => (
             <div key={index} className="flex flex-col items-center">
               <Image

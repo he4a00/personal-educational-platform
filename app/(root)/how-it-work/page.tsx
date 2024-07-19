@@ -58,7 +58,7 @@ const HowItWork = () => {
       <h1 className="text-2xl border-b-2 border-black font-semibold w-fit p-4 mt-5">
         طريقة دفع الدروس المدفوعة
       </h1>
-      <div className="flex flex-col p-5">
+      <div className="flex flex-col p-5 border-b-2 border-black">
         <h2 className="text-xl font-semibold mb-5">
           1- اولا عليك التأكد من صحة بياناتك المسجل بها علي المنصة
         </h2>
@@ -77,6 +77,15 @@ const HowItWork = () => {
         <h2 className="text-xl font-semibold mb-5">
           تأكد من ارسال الرقم المسجل به علي المنصة عند انشاء الحساب .. مهم جدا.
         </h2>
+      </div>
+      <div className="flex flex-col p-5 border-b-2 border-black gap-5">
+        <h1 className="text-2xl font-bold">كيفية انشاء حساب علي المنصة</h1>
+        <video width="100%" height="240" controls>
+          <source
+            src="https://res.cloudinary.com/dortdlynv/video/upload/v1721328315/vbc_mznxa1.mp4"
+            type="video/mp4"
+          />
+        </video>
       </div>
     </div>
   );

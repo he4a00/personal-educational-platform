@@ -6,21 +6,10 @@ import pen from "../images/pen.svg";
 
 const Services = () => {
   return (
-    <>
-      <svg
-        className="opacity-80"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-      >
-        <path
-          fill="#d1d5db"
-          fillOpacity="1"
-          d="M0,160L40,176C80,192,160,224,240,208C320,192,400,128,480,122.7C560,117,640,171,720,197.3C800,224,880,224,960,218.7C1040,213,1120,203,1200,192C1280,181,1360,171,1400,165.3L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
-        ></path>
-      </svg>
-      <div className=" p-30 pb-30 w-full bg-gray-300 opacity-80">
+    <div className="pt-40">
+      <div className="w-full ">
         <div
-          className="flex flex-col items-center justify-center
+          className="flex flex-col items-center justify-center pb-10
       "
         >
           <h1 className="text-4xl font-semibold text-gray-900 text-center p-2">
@@ -67,7 +56,7 @@ const Services = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

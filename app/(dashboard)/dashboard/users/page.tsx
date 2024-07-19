@@ -27,10 +27,10 @@ const Users = () => {
       let endpoint = `/users`;
       const params = [];
       if (searchParam) {
-        params.push(`search=${searchParam}`);
+        params.push(`phoneNumber=${searchParam}`);
       }
       if (sortParam) {
-        params.push(`sort=${sortParam}`);
+        params.push(`eduyear=${sortParam}`);
       }
       params.push(`page=${page}`);
       if (params.length > 0) {
@@ -48,7 +48,7 @@ const Users = () => {
       <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
         <Input
           type="text"
-          placeholder="Search by Name"
+          placeholder="البحث برقم الهاتف"
           className="bg-transparent border border-gray-300 rounded-md p-2"
           value={searchParam}
           onChange={(e) => setSearchParams(e.target.value)}

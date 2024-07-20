@@ -19,10 +19,10 @@ const Users = () => {
   const [searchParam, setSearchParams] = useState("");
   const [sortParam, setSortParam] = useState("");
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  // const [limit, setLimit] = useState(5);
 
   const { data: usersData, isLoading } = useQuery({
-    queryKey: ["users", searchParam, sortParam, page, limit],
+    queryKey: ["users", searchParam, sortParam, page],
     queryFn: async () => {
       let endpoint = `/users`;
       const params = [];
@@ -41,7 +41,6 @@ const Users = () => {
     },
   });
 
-  const totalPages = usersData ? Math.ceil(usersData.usersCount / limit) : 1;
   return (
     <div className="p-5">
       <h1 className="mb-5"> عدد الطلاب: {usersData?.usersCount}</h1>
@@ -92,7 +91,7 @@ const Users = () => {
           )}
         </TableBody>
       </Table>
-      <div className="mt-4 flex justify-between items-center">
+      {/* <div className="mt-4 flex justify-between items-center">
         <button
           className="px-4 py-2 bg-gray-300 rounded"
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -110,7 +109,7 @@ const Users = () => {
         >
           Next
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

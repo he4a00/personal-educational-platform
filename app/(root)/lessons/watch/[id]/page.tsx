@@ -1,6 +1,8 @@
 "use client";
 
+import Likes from "@/app/components/Likes";
 import Loader from "@/app/components/Loader";
+import ToggleLike from "@/app/components/ToggleLike";
 import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
 import { useQuery } from "@tanstack/react-query";
@@ -72,9 +74,10 @@ const UnlockedLesson = () => {
             }}
           />
         </div>
-        <p className="text-lg text-gray-700 text-center">
-          {unlockedLesson?.desc}
-        </p>
+        <div className="p-5 mt-5 flex gap-5">
+          <ToggleLike lessonId={id} />
+          <Likes lessonId={id} />
+        </div>
       </div>
     </div>
   );

@@ -42,6 +42,8 @@ const Users = () => {
     },
   });
 
+  console.log(usersData);
+
   return (
     <div className="p-5">
       <h1 className="mb-5"> عدد الطلاب: {usersData?.usersCount}</h1>

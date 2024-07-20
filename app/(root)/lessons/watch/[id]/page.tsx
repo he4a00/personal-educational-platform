@@ -2,7 +2,7 @@
 
 // import Likes from "@/app/components/Likes";
 import Loader from "@/app/components/Loader";
-import ToggleLike from "@/app/components/ToggleLike";
+// import ToggleLike from "@/app/components/ToggleLike";
 import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
 import { useQuery } from "@tanstack/react-query";

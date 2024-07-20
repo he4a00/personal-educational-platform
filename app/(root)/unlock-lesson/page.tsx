@@ -1,4 +1,5 @@
 "use client";
+import UnlockForAll from "@/app/components/UnlockForAll";
 import UnlockLesson from "@/app/components/UnlockLesson";
 import { useUserContext } from "@/app/context/UserContext";
 import { redirect } from "next/navigation";
@@ -19,7 +20,7 @@ const AddLesson = () => {
       </div>
       <div className="flex flex-col justify-center items-center">
         <UnlockLesson />
-        {/* <UnlockForAll /> */}
+        <UnlockForAll />
       </div>
     </div>
   );

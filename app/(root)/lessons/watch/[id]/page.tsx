@@ -1,6 +1,6 @@
 "use client";
 
-import Likes from "@/app/components/Likes";
+// import Likes from "@/app/components/Likes";
 import Loader from "@/app/components/Loader";
 import ToggleLike from "@/app/components/ToggleLike";
 import { useUserContext } from "@/app/context/UserContext";
@@ -74,10 +74,10 @@ const UnlockedLesson = () => {
             }}
           />
         </div>
-        <div className="p-5 mt-5 flex gap-5">
+        {/* <div className="p-5 mt-5 flex gap-5">
           <ToggleLike lessonId={id} />
           <Likes lessonId={id} />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -79,7 +79,7 @@ const Assignment = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-10 px-4 sm:px-6 lg:px-8">
       {!showScore && currentQuestion ? (
-        <div className="p-6 bg-white shadow-md rounded-md mb-8 w-full max-w-2xl">
+        <div className="p-6 bg-[#101012] shadow-md rounded-md mb-8 w-full max-w-2xl">
           <div className="w-full mb-6">
             <Image
               height={400}

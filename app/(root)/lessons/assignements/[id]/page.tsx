@@ -95,7 +95,7 @@ const Assignment = () => {
               <Button
                 key={idx}
                 onClick={() => handleClick(answer.isCorrect)}
-                className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md shadow-md hover:bg-blue-600 focus:outline-none"
+                className="bg-white text-black font-semibold py-2 px-4 rounded-md shadow-md  focus:outline-none"
               >
                 {answer.ansText}
               </Button>

@@ -164,7 +164,7 @@ const SummaryView = ({ questions, userAnswers, score }: any) => {
   return (
     <div className="text-center flex flex-col">
       <div className="border border-gray-300 p-6 bg-[#101012] rounded-md shadow-md w-full max-w-2xl">
-        <h2 className="text-2xl font-bold mb-6">ملخص الإجابات</h2>
+        <h2 className="text-2xl font-bold mb-6 text-white">ملخص الإجابات</h2>
         {questions.map((question: any, idx: any) => {
           const userAnswer = userAnswers.find(
             (ans: any) => ans.questionIndex === idx
@@ -201,7 +201,9 @@ const SummaryView = ({ questions, userAnswers, score }: any) => {
           );
         })}
         <div className="mt-6 mb-6">
-          <strong>النتيجة:</strong> {score} / {questions.length}
+          <h1 className="text-white">
+            <strong>النتيجة:</strong> {score} / {questions.length}
+          </h1>
         </div>
         <Link className="mb-5" href="/">
           <Button>الصفحة الرئيسية</Button>

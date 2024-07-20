@@ -135,7 +135,7 @@ const QuestionView = ({
           <Button
             key={idx}
             onClick={() => onAnswerClick(answer.isCorrect, idx)}
-            className="bg-white text-black font-semibold py-2 px-4 rounded-md shadow-md  focus:outline-none"
+            className="bg-white text-black font-semibold py-2 px-4 rounded-md shadow-md hover:bg-slate-400  focus:outline-none"
           >
             {answer.ansText}
           </Button>
@@ -163,7 +163,7 @@ const QuestionView = ({
 const SummaryView = ({ questions, userAnswers, score }: any) => {
   return (
     <div className="text-center flex flex-col">
-      <div className="border border-gray-300 p-6 bg-white rounded-md shadow-md w-full max-w-2xl">
+      <div className="border border-gray-300 p-6 bg-[#101012] rounded-md shadow-md w-full max-w-2xl">
         <h2 className="text-2xl font-bold mb-6">ملخص الإجابات</h2>
         {questions.map((question: any, idx: any) => {
           const userAnswer = userAnswers.find(
@@ -183,9 +183,7 @@ const SummaryView = ({ questions, userAnswers, score }: any) => {
                   src={question.question.qImage}
                 />
               </div>
-              <div className="text-lg mb-2">
-                <strong>سؤال:</strong> {question.question.qText}
-              </div>
+
               <div
                 className={`text-lg ${
                   userAnswer?.isCorrect ? "text-green-600" : "text-red-600"

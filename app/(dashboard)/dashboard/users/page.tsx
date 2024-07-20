@@ -19,10 +19,10 @@ const Users = () => {
   const [searchParam, setSearchParams] = useState("");
   const [sortParam, setSortParam] = useState("");
   const [page, setPage] = useState(1);
-  // const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(5);
 
   const { data: usersData, isLoading } = useQuery({
-    queryKey: ["users", searchParam, sortParam, page],
+    queryKey: ["users", searchParam, sortParam, page, limit],
     queryFn: async () => {
       let endpoint = `/users`;
       const params = [];
@@ -33,6 +33,7 @@ const Users = () => {
         params.push(`eduyear=${sortParam}`);
       }
       params.push(`page=${page}`);
+      params.push(`limit=${limit}`);
       if (params.length > 0) {
         endpoint += `?${params.join("&")}`;
       }
@@ -91,7 +92,7 @@ const Users = () => {
           )}
         </TableBody>
       </Table>
-      {/* <div className="mt-4 flex justify-between items-center">
+      <div className="mt-4 flex justify-between items-center">
         <button
           className="px-4 py-2 bg-gray-300 rounded"
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -100,16 +101,20 @@ const Users = () => {
           Previous
         </button>
         <span>
-          Page {page} of {totalPages}
+          Page {page} of {Math.ceil(usersData?.usersCount / limit)}
         </span>
         <button
           className="px-4 py-2 bg-gray-300 rounded"
-          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={page === totalPages}
+          onClick={() =>
+            setPage((prev) =>
+              Math.min(prev + 1, Math.ceil(usersData?.usersCount / limit))
+            )
+          }
+          disabled={page === Math.ceil(usersData?.usersCount / limit)}
         >
           Next
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };

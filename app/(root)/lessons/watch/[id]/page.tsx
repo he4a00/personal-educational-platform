@@ -1,8 +1,8 @@
 "use client";
 
-// import Likes from "@/app/components/Likes";
+import Likes from "@/app/components/Likes";
 import Loader from "@/app/components/Loader";
-// import ToggleLike from "@/app/components/ToggleLike";
+import ToggleLike from "@/app/components/ToggleLike";
 import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
 import { useQuery } from "@tanstack/react-query";
@@ -74,10 +74,10 @@ const UnlockedLesson = () => {
             }}
           />
         </div>
-        {/* <div className="p-5 mt-5 flex gap-5">
+        <div className="p-5 mt-5 flex gap-2 items-center w-full border rounded-lg shadow-md bg-white">
           <ToggleLike lessonId={id} />
           <Likes lessonId={id} />
-        </div> */}
+        </div>
       </div>
     </div>
   );

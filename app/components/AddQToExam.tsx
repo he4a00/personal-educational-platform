@@ -13,11 +13,23 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFieldArray, useForm } from "react-hook-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { QuestionsValidator } from "../utils/validators/examValidator";
 import api from "../utils/api";
+import { MathJax } from "better-react-mathjax";
+import { EditableMathField, addStyles } from "react-mathquill";
+
+addStyles();
+
+const latexToolbar = [
+  { symbol: "\\frac{a}{b}", display: "كسر" },
+  { symbol: "\\sqrt{x}", display: "جذر تربيعي" },
+  { symbol: "\\sum", display: "مجموع" },
+  { symbol: "\\int", display: "تكامل" },
+  { symbol: "\\pi", display: "باي" },
+];
 
 const AddQToExam = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,6 +50,7 @@ const AddQToExam = () => {
   });
 
   const { toast } = useToast();
+  const router = useRouter();
 
   const { mutate: addQToExam, isPending } = useMutation({
     mutationFn: async (formData: any) => {
@@ -49,8 +62,9 @@ const AddQToExam = () => {
       }
     },
     onSuccess: () => {
+      router.push("/dashboard/exams");
       toast({
-        title: "تم اضافة الاسألة بنجاح",
+        title: "تم اضافة الاسئلة بنجاح",
       });
     },
     onError: (error: any) => {
@@ -66,6 +80,7 @@ const AddQToExam = () => {
   function onSubmit(values: z.infer<typeof QuestionsValidator>) {
     addQToExam(values);
   }
+
   return (
     <Form {...form}>
       <form
@@ -73,7 +88,7 @@ const AddQToExam = () => {
         className="flex flex-col justify-start gap-10 w-full bg-[#101012] p-12 rounded-lg"
       >
         <div className="flex flex-col gap-4">
-          <FormLabel className="font-semibold text-white">الجدول</FormLabel>
+          <FormLabel className="font-semibold text-white">الأسئلة</FormLabel>
           {fields.map((item, index) => (
             <div key={item.id} className="flex flex-col gap-2">
               <FormField
@@ -84,6 +99,7 @@ const AddQToExam = () => {
                     <FormLabel className="font-semibold text-white">
                       السؤال
                     </FormLabel>
+
                     <FormControl>
                       <Input
                         className="w-full border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -94,13 +110,13 @@ const AddQToExam = () => {
                   </FormItem>
                 )}
               />
-
               <Button variant="destructive" onClick={() => remove(index)}>
                 حذف السؤال
               </Button>
             </div>
           ))}
           <Button
+            type="button"
             variant="secondary"
             onClick={() => append({ questionText: "" })}
           >

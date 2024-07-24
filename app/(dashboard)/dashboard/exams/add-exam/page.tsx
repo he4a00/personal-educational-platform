@@ -7,13 +7,13 @@ import { redirect } from "next/navigation";
 const AddExam = () => {
   const { user }: any = useUserContext();
 
-  //   if (!user) {
-  //     redirect("/");
-  //   }
+  if (!user) {
+    redirect("/");
+  }
 
-  //   if (user?.user?.type === "student") {
-  //     redirect("/");
-  //   }
+  if (user?.user?.type !== "teacher") {
+    redirect("/");
+  }
   return (
     <div className="flex mx-auto flex-col items-start justify-start max-w-3xl ">
       <div className="pt-10 pb-10">

@@ -42,8 +42,6 @@ const Users = () => {
     },
   });
 
-  console.log(usersData);
-
   return (
     <div className="p-5">
       <h1 className="mb-5"> عدد الطلاب: {usersData?.usersCount}</h1>
@@ -61,7 +59,7 @@ const Users = () => {
         <TableCaption>A list of your recent users.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">الاسم الاول</TableHead>
+            <TableHead align="center">الاسم الاول</TableHead>
             <TableHead>الاسم الثاني</TableHead>
             <TableHead>الصف</TableHead>
             <TableHead>رقم الهاتف</TableHead>
@@ -78,7 +76,7 @@ const Users = () => {
           ) : usersData?.users?.length > 0 ? (
             usersData.users.map((user: any) => (
               <TableRow key={user._id}>
-                <TableCell className="font-medium">{user.firstname}</TableCell>
+                <TableCell>{user.firstname}</TableCell>
                 <TableCell>{user.lastname}</TableCell>
                 <TableCell>{user.eduyear}</TableCell>
                 <TableCell>{user.phoneNumber}</TableCell>

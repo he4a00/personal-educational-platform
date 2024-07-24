@@ -2,47 +2,46 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+
+import logo from "../images/logo.png";
 
 const Sidebar = () => {
   const links = [
     {
       name: "Users",
+      view: "الطلاب",
     },
     {
       name: "Lessons",
+      view: "الدروس",
+    },
+    {
+      name: "Exams",
+      view: "الامتحانات",
     },
   ];
 
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col h-full p-4">
-      <Link href="/" className="flex flex-row gap-5 mb-10 border-b-2 p-4">
-        <Image
-          src="/images/logo.svg"
-          alt="Analatica"
-          width={30}
-          height={30}
-          className="object-contain"
-        />
-        <p className="max-sm:hidden font-satoshi font-semibold text-lg  tracking-wide">
-          The Teacher
-        </p>
-      </Link>
-      <div className="flex flex-col gap-7 p-5">
+    <div className="flex flex-col h-full p-4 bg-gray-50">
+      <div className="flex items-center gap-3 p-4 mb-10 border-b-2">
+        <Image src={logo} alt="Analatica" width={50} height={50} />
+        <h1 className="text-xl font-bold">Analatica</h1>
+      </div>
+      <div className="flex flex-col gap-4">
         {links.map((link) => (
           <Link
             href={`/dashboard/${link.name.toLowerCase()}`}
             key={link.name}
-            className={`mb-4 p-3 rounded-lg font-semibold ${
+            className={`flex items-center gap-3 p-4 rounded-lg transition ${
               pathname.toLowerCase() === `/dashboard/${link.name.toLowerCase()}`
-                ? "shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]"
-                : ""
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-700 hover:bg-gray-200"
             }`}
           >
-            {link.name}
+            <span>{link.view}</span>
           </Link>
         ))}
       </div>

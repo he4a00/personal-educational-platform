@@ -16,15 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl">
       <body className={inter.className}>
         <UserProvider>
           <QueryProvider>
-            <div className="flex flex-col md:flex-row h-screen">
-              <div className="w-full md:w-1/6 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+            <div className="flex h-screen overflow-hidden">
+              <div className="w-1/5 md:w-1/6 shadow-md bg-white">
                 <Sidebar />
               </div>
-              <div className="flex-1 p-6 bg-gray-100 overflow-auto">
+              <div className="flex-1 p-6 bg-gray-100 overflow-y-auto">
                 {children}
               </div>
             </div>

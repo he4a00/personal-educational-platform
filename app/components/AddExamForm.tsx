@@ -26,6 +26,8 @@ const AddExamForm = ({ student }: any) => {
     defaultValues: {
       title: "",
       eduyear: "",
+      section: "",
+      maxScore: 15,
     },
   });
 
@@ -42,7 +44,7 @@ const AddExamForm = ({ student }: any) => {
       }
     },
     onSuccess: (data) => {
-      router.push(`/exams/${data._id}`);
+      router.push(`/dashboard/exams/add-exam/${data._id}`);
     },
     onError: (err: any) => {
       if (err.response.status === 403) {
@@ -73,6 +75,42 @@ const AddExamForm = ({ student }: any) => {
               <FormItem className="">
                 <FormLabel className="font-semibold text-gray-700">
                   عنوان الامتحان
+                </FormLabel>
+                <FormControl className="w-full">
+                  <Input
+                    className="w-full border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="section"
+            render={({ field }) => (
+              <FormItem className="">
+                <FormLabel className="font-semibold text-gray-700">
+                  القسم
+                </FormLabel>
+                <FormControl className="w-full">
+                  <Input
+                    className="w-full border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="maxScore"
+            render={({ field }) => (
+              <FormItem className="">
+                <FormLabel className="font-semibold text-gray-700">
+                  عدد الاسئلة
                 </FormLabel>
                 <FormControl className="w-full">
                   <Input

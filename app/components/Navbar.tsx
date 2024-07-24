@@ -62,7 +62,7 @@ const Navbar = () => {
           {isOpen ? <ChevronsLeftRight /> : <MenuSquare />}
         </button>
         <Link href="/">
-          <Image src={logo} width={150} height={150} alt="Logo" />
+          <Image src={logo} width={100} height={100} alt="Logo" />
         </Link>
       </div>
 
@@ -106,6 +106,11 @@ const Navbar = () => {
                   text: "الدروس",
                   IconComponent: Book,
                 })}
+                {renderLinkButton({
+                  href: `/lessons/user/${user?.user?._id}`,
+                  text: "الامتحانات",
+                  IconComponent: Book,
+                })}
                 {user?.user?.type === "teacher" && (
                   <>
                     {renderLinkButton({
@@ -146,6 +151,11 @@ const Navbar = () => {
               text: "الدروس",
               IconComponent: Book,
             })}
+            {renderLinkButton({
+              href: `/exam/`,
+              text: "الامتحانات",
+              IconComponent: Book,
+            })}
             {user?.user?.type === "teacher" && (
               <>
                 {renderLinkButton({
@@ -180,9 +190,11 @@ const Navbar = () => {
             })}
           </div>
         )}
-        <Link href="/">
-          <Image src={logo} width={150} height={150} alt="Logo" />
-        </Link>
+        <div className="flex items-center m-2">
+          <Link href="/">
+            <Image src={logo} width={100} height={100} alt="Logo" />
+          </Link>
+        </div>
       </div>
     </div>
   );

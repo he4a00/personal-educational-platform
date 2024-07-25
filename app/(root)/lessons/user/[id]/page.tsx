@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useUserContext } from "@/app/context/UserContext";
 import Loader from "@/app/components/Loader";
+import NoDataFound from "@/app/components/NoDataFound";
 
 interface UserData {
   _id: string;
@@ -63,9 +64,10 @@ const UserUnlockedLessons = () => {
   }
   if (isError || !userUnlockedLessons || userUnlockedLessons.length === 0) {
     return (
-      <div className="w-full h-full flex items-center justify-center p-3">
-        <h1 className="text-3xl font-bold">عذرا ، لا يوجد أي دروس متاحة لك.</h1>
-      </div>
+      <NoDataFound
+        mainText="لا يوجد دروس لهذا الصف في الوقت الحالي"
+        subText="يبدو انه لا يوجد دروس في هذه اللحظة ، برجاء التحقق من الصفحة مرة اخري او بعد مدة."
+      />
     );
   }
 

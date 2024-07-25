@@ -21,6 +21,7 @@ import NoDataFound from "@/app/components/NoDataFound";
 
 interface LessonData {
   _id: string;
+  assignment?: string;
   title: string;
   isPaid: boolean;
   desc: string;
@@ -44,8 +45,6 @@ const LessonsByUnit = () => {
 
   const { user }: any = useUserContext();
 
-  // Invalidate the query whenever the class parameters change
-
   const {
     data: classLessons,
     isLoading,
@@ -65,6 +64,8 @@ const LessonsByUnit = () => {
       }
     },
   });
+
+  console.log(classLessons);
 
   if (isLoading || isFetching) {
     return <Loader />;
@@ -148,11 +149,14 @@ const LessonsByUnit = () => {
                     <Link href={`/lessons/watch/${lesson?._id}`}>
                       <Button className="m-5">مشاهدة</Button>
                     </Link>
-                    <Link href={`/lessons/assignements/${lesson?._id}`}>
-                      <Button className="bg-green-500 text-white hover:bg-green-600">
-                        الواجب
-                      </Button>
-                    </Link>
+                    {/* check if the  */}
+                    {lesson?.assignment && (
+                      <Link href={`/lessons/assignements/${lesson?._id}`}>
+                        <Button className="bg-green-500 text-white hover:bg-green-600">
+                          الواجب
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 )}
 

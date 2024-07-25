@@ -17,6 +17,7 @@ import { useUserContext } from "@/app/context/UserContext";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Loader from "@/app/components/Loader";
+import NoDataFound from "@/app/components/NoDataFound";
 
 interface LessonData {
   _id: string;
@@ -71,11 +72,10 @@ const LessonsByUnit = () => {
 
   if (isError || !classLessons || classLessons.lessons.length === 0) {
     return (
-      <div className="w-full h-full flex items-center justify-center">
-        <h1 className="text-3xl font-bold p-3">
-          عذراً، لا يوجد دروس متاحة لهذا الصف.
-        </h1>
-      </div>
+      <NoDataFound
+        mainText="لا يوجد دروس لهذا الصف في الوقت الحالي"
+        subText="يبدو انه لا يوجد دروس في هذه اللحظة ، برجاء التحقق من الصفحة مرة اخري او بعد مدة."
+      />
     );
   }
 
@@ -144,9 +144,16 @@ const LessonsByUnit = () => {
                 ) : lesson?.isPaid ? (
                   ""
                 ) : (
-                  <Link href={`/lessons/watch/${lesson?._id}`}>
-                    <Button className="m-5">مشاهدة</Button>
-                  </Link>
+                  <div className="flex flex-row items-center">
+                    <Link href={`/lessons/watch/${lesson?._id}`}>
+                      <Button className="m-5">مشاهدة</Button>
+                    </Link>
+                    <Link href={`/lessons/assignements/${lesson?._id}`}>
+                      <Button className="bg-green-500 text-white hover:bg-green-600">
+                        الواجب
+                      </Button>
+                    </Link>
+                  </div>
                 )}
 
                 {user?.user?.type === "teacher" ? (

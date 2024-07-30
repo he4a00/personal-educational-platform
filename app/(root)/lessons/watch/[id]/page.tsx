@@ -2,6 +2,7 @@
 
 import Likes from "@/app/components/Likes";
 import Loader from "@/app/components/Loader";
+import RelatedLessons from "@/app/components/RelatedLessons";
 import ToggleLike from "@/app/components/ToggleLike";
 import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
@@ -53,12 +54,9 @@ const UnlockedLesson = () => {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6">
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-3xl">
-        <h1 className="text-4xl font-bold text-center mb-4">
-          {unlockedLesson?.title}
-        </h1>
-        <div className="flex justify-center mb-4">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-6 p-4 md:p-6">
+      <div className="space-y-6">
+        <div className="relative aspect-video rounded-lg overflow-hidden">
           <ReactPlayer
             width="100%"
             height="auto"
@@ -73,12 +71,21 @@ const UnlockedLesson = () => {
               },
             }}
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-4">
+            <div className="text-white text-lg font-medium line-clamp-2">
+              {unlockedLesson?.title}
+            </div>
+          </div>
         </div>
-        <div className="p-5 mt-5 flex gap-2 items-center w-full border rounded-lg shadow-md bg-white">
+        <div className="flex items-center gap-4">
           <ToggleLike lessonId={id} />
           <Likes lessonId={id} />
         </div>
       </div>
+      <RelatedLessons
+        id={id}
+        classroom={decodeURIComponent(unlockedLesson?.classroom)}
+      />
     </div>
   );
 };

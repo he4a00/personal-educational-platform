@@ -107,7 +107,7 @@ const Navbar = () => {
                   IconComponent: Book,
                 })}
                 {renderLinkButton({
-                  href: `/lessons/user/${user?.user?._id}`,
+                  href: `/exam/`,
                   text: "الامتحانات",
                   IconComponent: Book,
                 })}

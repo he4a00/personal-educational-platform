@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Heart, ThumbsUp } from "lucide-react";
+import { Heart, ThumbsUp, ThumbsUpIcon } from "lucide-react";
 import api from "../utils/api";
 import { useUserContext } from "../context/UserContext";
 
@@ -53,20 +53,23 @@ const ToggleLike = ({ lessonId }: LikesProps) => {
 
   return (
     <Button
-      className="bg-transparent hover:bg-transparent p-0"
+      className="bg-transparent hover:bg-transparent p-3 hover:bg-slate-100 transition-all 0.5s ease-linear"
+      variant="outline"
       onClick={handleToggleLike}
       disabled={isPending}
     >
       {isLiked ? (
-        <Heart
-          className="h-6 w-6 text-red-500 hover:text-red-600 fill-current"
+        <p className="text-blue-600 m-2">الغاء الاعجاب</p>
+      ) : (
+        <p className="m-2">اعجاب</p>
+      )}
+      {isLiked ? (
+        <ThumbsUpIcon
+          className="h-6 w-6 text-blue-500  fill-current"
           aria-label="Unlike"
         />
       ) : (
-        <Heart
-          className="h-6 w-6 text-gray-500 hover:text-gray-600"
-          aria-label="Like"
-        />
+        <ThumbsUpIcon className="w-5 h-5 mr-2" />
       )}
     </Button>
   );

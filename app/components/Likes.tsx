@@ -15,7 +15,14 @@ const Likes = ({ lessonId }: LikesLessonProps) => {
   });
 
   return (
-    <h1 className="flex items-center text-lg">{lessonLikes?.data.likes}</h1>
+    <div className="text-muted-foreground text-gray-800">
+      <h1>
+        <span className="font-medium text-blue-600">
+          {lessonLikes?.data?.likes}
+        </span>{" "}
+        لايك
+      </h1>
+    </div>
   );
 };
 

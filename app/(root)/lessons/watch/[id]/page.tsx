@@ -71,10 +71,8 @@ const UnlockedLesson = () => {
               },
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-4">
-            <div className="text-white text-lg font-medium line-clamp-2">
-              {unlockedLesson?.title}
-            </div>
+          <div className="text-lg font-medium line-clamp-2 p-4">
+            {unlockedLesson?.title}
           </div>
         </div>
         <div className="flex items-center gap-4">

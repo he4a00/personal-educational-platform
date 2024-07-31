@@ -5,6 +5,7 @@ import React from "react";
 import api from "../utils/api";
 import ReactPlayer from "react-player";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 const RelatedLessons = ({
   classroom,
@@ -33,13 +34,16 @@ const RelatedLessons = ({
   return (
     <div>
       <div className="flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">Related Videos</h2>
+        <h2 className="text-2xl font-bold border-b border-gray-300 p-3">
+          الدروس المتعلقة بهذا الموضوع
+        </h2>
         <div className="grid gap-4">
           {relatedLessons?.map((lesson: any) => (
             <div key={lesson._id} className="flex gap-4">
               <div className="relative w-[120px] h-[68px] rounded-lg overflow-hidden">
                 {lesson._id === id ? (
-                  <div className="cursor-not-allowed">
+                  <div className="cursor-not-allowed opacity-70">
+                    <Loader2 className="absolute top-5 animate-spin right-11" />
                     <ReactPlayer
                       width="100%"
                       height="auto"

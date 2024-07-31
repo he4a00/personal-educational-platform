@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Classes from "../components/Classes";
 import Hero from "../components/Hero";
 import HowItWork from "../components/HowItWork";
@@ -9,7 +10,7 @@ export default function Home() {
       <div className="relative w-full overflow-hidden mt-3 bg-black text-yellow-300 h-14">
         <div className="absolute top-0 left-0 h-full animate-moving-text flex items-center whitespace-nowrap">
           <h1 className="text-center">
-            تم اضافة واجب علي الدرس الثاني حساب مثلثات للصف الثالث الاعدادي
+            انضم إلينا اليوم واستفد من منصتنا التعليمية المميزة!
           </h1>
         </div>
       </div>

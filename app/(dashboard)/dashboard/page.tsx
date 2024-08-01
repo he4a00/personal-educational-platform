@@ -7,7 +7,7 @@ import React from "react";
 const Dashboard = () => {
   const { user }: any = useUserContext();
 
-  if (user?.user?.type === "student") {
+  if (user?.user?.type === "student" || !user) {
     redirect("/");
   }
   return <></>;

@@ -27,8 +27,10 @@ const Sidebar = () => {
   return (
     <div className="flex flex-col h-full p-4 bg-gray-50">
       <div className="flex items-center gap-3 p-4 mb-10 border-b-2">
-        <Image src={logo} alt="Analatica" width={50} height={50} />
-        <h1 className="text-xl font-bold">Analatica</h1>
+        <Link href="/">
+          <Image src={logo} alt="Teacher" width={50} height={50} />
+        </Link>
+        <h1 className="text-xl font-bold">The Teacher</h1>
       </div>
       <div className="flex flex-col gap-4">
         {links.map((link) => (

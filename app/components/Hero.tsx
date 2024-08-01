@@ -27,8 +27,7 @@ const Hero = () => {
           هاشم شكري
         </h6>
         <p className="md:text-3xl text-xl font-semibold text-gray-500 p-3 ">
-          استكشاف الرياضيات ،
-          <br /> تمكين العقول
+          الرياضيات بعيون جديدة استكشاف بلا حدود.
         </p>
         {!user ? (
           <Link href="/sign-in">
@@ -36,7 +35,7 @@ const Hero = () => {
               variant="destructive"
               className="flex gap-2 p-7 transition-all duration-300 ease-in-out transform hover:shadow-md hover:translate-y-0.5"
             >
-              تسجيل الدخول
+              انضم الان
               <UserRoundCheck />
             </Button>
           </Link>

@@ -1,3 +1,4 @@
+import DashboardNavbar from "../components/DashboardNavbar";
 import QueryProvider from "../components/QueryProvider";
 import Sidebar from "../components/Sidebar";
 import { UserProvider } from "../context/UserContext";
@@ -19,8 +20,11 @@ export default function RootLayout({
     <html lang="ar" dir="rtl">
       <body className={inter.className}>
         <QueryProvider>
+          <div className="md:hidden flex">
+            <DashboardNavbar />
+          </div>
           <div className="flex h-screen overflow-hidden">
-            <div className="w-1/5 md:w-1/6 shadow-md bg-white">
+            <div className="w-1/5 md:w-1/6 shadow-md bg-white hidden md:flex">
               <Sidebar />
             </div>
             <UserProvider>

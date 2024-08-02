@@ -48,3 +48,18 @@ export const units = [
     name: "الرابعة",
   },
 ];
+
+export const links = [
+  {
+    name: "Users",
+    view: "الطلاب",
+  },
+  {
+    name: "Lessons",
+    view: "الدروس",
+  },
+  {
+    name: "Exams",
+    view: "الامتحانات",
+  },
+];

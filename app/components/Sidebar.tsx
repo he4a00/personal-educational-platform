@@ -5,27 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import logo from "../images/logo.png";
+import { links } from "../constants";
 
 const Sidebar = () => {
-  const links = [
-    {
-      name: "Users",
-      view: "الطلاب",
-    },
-    {
-      name: "Lessons",
-      view: "الدروس",
-    },
-    {
-      name: "Exams",
-      view: "الامتحانات",
-    },
-  ];
-
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col h-full p-4 bg-gray-50">
+    <div className="flex-col h-full p-4 bg-gray-50">
       <div className="flex items-center gap-3 p-4 mb-10 border-b-2">
         <Link href="/">
           <Image src={logo} alt="Teacher" width={50} height={50} />

@@ -55,15 +55,15 @@ const Users = () => {
         />
         <SelectSorting setSortParam={setSortParam} />
       </div>
-      <Table className="w-full">
+      <Table className="w-full table-auto">
         <TableCaption>A list of your recent users.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead align="center">الاسم الاول</TableHead>
-            <TableHead>الاسم الثاني</TableHead>
-            <TableHead>الصف</TableHead>
-            <TableHead>رقم الهاتف</TableHead>
-            <TableHead>رقم ولي الامر</TableHead>
+            <TableHead className="text-right">الاسم الاول</TableHead>
+            <TableHead className="text-right">الاسم الثاني</TableHead>
+            <TableHead className="text-right">الصف</TableHead>
+            <TableHead className="text-right">رقم الهاتف</TableHead>
+            <TableHead className="text-right">رقم ولي الامر</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -76,11 +76,13 @@ const Users = () => {
           ) : usersData?.users?.length > 0 ? (
             usersData.users.map((user: any) => (
               <TableRow key={user._id}>
-                <TableCell>{user.firstname}</TableCell>
-                <TableCell>{user.lastname}</TableCell>
-                <TableCell>{user.eduyear}</TableCell>
-                <TableCell>{user.phoneNumber}</TableCell>
-                <TableCell>{user.parentPhoneNumber}</TableCell>
+                <TableCell className="text-right">{user.firstname}</TableCell>
+                <TableCell className="text-right">{user.lastname}</TableCell>
+                <TableCell className="text-right">{user.eduyear}</TableCell>
+                <TableCell className="text-right">{user.phoneNumber}</TableCell>
+                <TableCell className="text-right">
+                  {user.parentPhoneNumber}
+                </TableCell>
               </TableRow>
             ))
           ) : (

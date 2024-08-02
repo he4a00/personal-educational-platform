@@ -53,7 +53,10 @@ const ExamDetails = () => {
   }
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading exam data</div>;
-  if (!examData?.data?.questions) {
+  const { exam, examQuestions } = examData;
+  const questions = examQuestions;
+  console.log(questions);
+  if (!questions) {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <h1 className="text-2xl font-bold">
@@ -62,9 +65,6 @@ const ExamDetails = () => {
       </div>
     );
   }
-
-  const { exam, examQuestions } = examData;
-  const questions = examQuestions;
 
   const handleAnswerClick = (isCorrect: any) => {
     if (isCorrect) {

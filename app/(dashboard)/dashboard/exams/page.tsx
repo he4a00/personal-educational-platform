@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
-import { Edit, View } from "lucide-react";
+import { BookAIcon, Edit, View } from "lucide-react";
 import DeleteExamButton from "@/app/components/DeleteExamButton";
 import SwitchActiveButton from "@/app/components/SwitchActiveButton";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -56,6 +56,9 @@ const Exams = () => {
               {exam.title}
             </Label>
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
+              <Link href={`/dashboard/exams/result/${exam?._id}`}>
+                <BookAIcon />
+              </Link>
               <Link href={`/dashboard/exams/add-exam/${exam?._id}`}>
                 <Edit />
               </Link>

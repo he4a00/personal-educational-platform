@@ -9,7 +9,7 @@ const useUserContext = () => useContext(UserContext);
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Initial loading state is true
   const { toast }: any = useToast();
 
   const login = async (phoneNumber: string, password: string) => {
@@ -57,6 +57,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(JSON.parse(storedUser));
       }
     }
+    setLoading(false); // Set loading to false after checking localStorage
   }, []);
 
   return (

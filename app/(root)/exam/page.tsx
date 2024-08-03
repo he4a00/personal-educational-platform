@@ -2,6 +2,7 @@
 
 import Loader from "@/app/components/Loader";
 import NoDataFound from "@/app/components/NoDataFound";
+import { useUserContext } from "@/app/context/UserContext";
 import api from "@/app/utils/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,6 +29,8 @@ const Exams = () => {
       return data;
     },
   });
+
+  const { user }: any = useUserContext();
 
   if (isLoading || isFetching) {
     return <Loader />;
@@ -60,11 +63,12 @@ const Exams = () => {
                     <h3 className="text-lg font-semibold">{exam?.title}</h3>
                     <p className="text-muted-foreground">{exam?.eduyear}</p>
                     <p className="text-muted-foreground">{foramtedDate}</p>
-                    {exam?.isActive && (
+                    {exam?.isActive ||
+                    user?.user?.classroom === exam?.eduyear ? (
                       <Link className="mt-5" href={`/exam/${exam?._id}`}>
                         <Button disabled={!exam?.isActive}>دخول</Button>
                       </Link>
-                    )}
+                    ) : null}
                   </div>
                 </CardContent>
               </Card>

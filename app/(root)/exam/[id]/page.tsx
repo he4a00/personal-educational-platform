@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import SaveExamScoreButton from "@/app/components/SaveExamScoreButton";
 import { useUserContext } from "@/app/context/UserContext";
 import Link from "next/link";
+import Image from "next/image";
 
 const ExamDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -55,7 +56,6 @@ const ExamDetails = () => {
   if (error) return <div>Error loading exam data</div>;
   const { exam, examQuestions } = examData;
   const questions = examQuestions;
-  console.log(questions);
   if (!questions) {
     return (
       <div className="flex h-full w-full items-center justify-center">
@@ -100,9 +100,9 @@ const ExamDetails = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen w-full container">
-      <div className="bg-card p-12 w-full rounded-lg shadow-lg h-auto flex justify-center flex-col">
+      <div className="bg-[#101012] p-12 w-full rounded-lg shadow-lg h-auto flex justify-center flex-col">
         {isScoreSaved ? (
-          <div className="text-card-foreground text-xl font-bold mb-4 flex flex-col items-center gap-6">
+          <div className="text-card-foreground text-xl font-bold mb-4 flex flex-col items-center gap-6 text-white">
             نتيجتك: {score} / {questions.length}
           </div>
         ) : (
@@ -140,9 +140,16 @@ const ExamDetails = () => {
                     </Button>
                   </div>
                 </div>
-                <div className="text-card-foreground text-xl font-bold mb-4">
-                  {questions[currentQuestion]?.questionText}
+                <div className="w-full mb-6">
+                  <Image
+                    height={400}
+                    width={400}
+                    className="w-full h-auto object-contain"
+                    alt=""
+                    src={questions[currentQuestion]?.questionText}
+                  />
                 </div>
+
                 <div className="grid grid-cols-2 gap-4">
                   {questions[currentQuestion]?.answers.map(
                     (answer: any, index: any) => (

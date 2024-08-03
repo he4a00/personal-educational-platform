@@ -14,8 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { MathJax, MathJaxContext } from "better-react-mathjax";
-import { useState } from "react";
+import Image from "next/image";
 
 const Exams = () => {
   const { id } = useParams<{ id: string }>();
@@ -47,7 +46,12 @@ const Exams = () => {
             examQuestions.map((question: any) => (
               <TableRow key={question._id}>
                 <TableCell className="font-medium w-[15rem]">
-                  {question.questionText}
+                  <Image
+                    width={150}
+                    height={150}
+                    alt=""
+                    src={question.questionText}
+                  />
                 </TableCell>
                 <TableCell align="right">
                   <Link

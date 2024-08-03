@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
+import { useState } from "react";
 
 const Exams = () => {
   const { id } = useParams<{ id: string }>();

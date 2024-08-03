@@ -11,28 +11,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { QuestionsValidator } from "../utils/validators/examValidator";
 import api from "../utils/api";
-import { MathJax } from "better-react-mathjax";
-import { EditableMathField, addStyles } from "react-mathquill";
-
-addStyles();
-
-const latexToolbar = [
-  { symbol: "\\frac{a}{b}", display: "كسر" },
-  { symbol: "\\sqrt{x}", display: "جذر تربيعي" },
-  { symbol: "\\sum", display: "مجموع" },
-  { symbol: "\\int", display: "تكامل" },
-  { symbol: "\\pi", display: "باي" },
-];
+import { useState } from "react";
 
 const AddQToExam = () => {
   const { id } = useParams<{ id: string }>();
+  const [questionImages, setQuestionImages] = useState<(File | null)[]>([null]);
+
+  const handleQuestionChange = (index: number, qImage: File | null) => {
+    const updatedImages = [...questionImages];
+    updatedImages[index] = qImage;
+    setQuestionImages(updatedImages);
+  };
+
   const form = useForm({
     resolver: zodResolver(QuestionsValidator),
     defaultValues: {
@@ -53,9 +49,13 @@ const AddQToExam = () => {
   const router = useRouter();
 
   const { mutate: addQToExam, isPending } = useMutation({
-    mutationFn: async (formData: any) => {
+    mutationFn: async (formData: FormData) => {
       try {
-        const { data } = await api.post(`/exam/questions/${id}`, formData);
+        const { data } = await api.post(`/exam/questions/${id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         return data;
       } catch (error) {
         throw error;
@@ -68,7 +68,7 @@ const AddQToExam = () => {
       });
     },
     onError: (error: any) => {
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         toast({
           title: "غير مسموح لك بفعل هذا الحدث",
           variant: "destructive",
@@ -78,7 +78,15 @@ const AddQToExam = () => {
   });
 
   function onSubmit(values: z.infer<typeof QuestionsValidator>) {
-    addQToExam(values);
+    const formData = new FormData();
+
+    questionImages.forEach((image, index) => {
+      if (image) {
+        formData.append(`questions`, image);
+      }
+    });
+
+    addQToExam(formData);
   }
 
   return (
@@ -99,17 +107,23 @@ const AddQToExam = () => {
                     <FormLabel className="font-semibold text-white">
                       السؤال
                     </FormLabel>
-
                     <FormControl>
-                      <Input
-                        className="w-full border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                        {...field}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) =>
+                          handleQuestionChange(
+                            index,
+                            e.target.files?.[0] || null
+                          )
+                        }
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <Button variant="destructive" onClick={() => remove(index)}>
                 حذف السؤال
               </Button>
@@ -118,7 +132,10 @@ const AddQToExam = () => {
           <Button
             type="button"
             variant="secondary"
-            onClick={() => append({ questionText: "" })}
+            onClick={() => {
+              append({ questionText: "" });
+              setQuestionImages([...questionImages, null]);
+            }}
           >
             اضافة سؤال
           </Button>

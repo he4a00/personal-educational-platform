@@ -18,8 +18,6 @@ import SelectSorting from "@/app/components/SelectSorting";
 const Users = () => {
   const [searchParam, setSearchParams] = useState("");
   const [sortParam, setSortParam] = useState("");
-  // const [page, setPage] = useState(1);
-  // const [limit, setLimit] = useState(5);
 
   const { data: usersData, isLoading } = useQuery({
     queryKey: ["users", searchParam, sortParam],
@@ -32,11 +30,6 @@ const Users = () => {
       if (sortParam) {
         params.push(`eduyear=${sortParam}`);
       }
-      // params.push(`page=${page}`);
-      // params.push(`limit=${limit}`);
-      // if (params.length > 0) {
-      //   endpoint += `?${params.join("&")}`;
-      // }
       const { data } = await api.get(endpoint);
       return data;
     },

@@ -22,6 +22,10 @@ const Assignment = () => {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
+  const [clicked, setClicked] = useState(false);
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(
+    null
+  );
 
   // Fetch assignments data
   const {
@@ -38,25 +42,31 @@ const Assignment = () => {
 
   // Handler Functions
   const handleAnswerClick = (isCorrect: boolean, answerIndex: number) => {
-    if (isCorrect) {
-      setScore(score + 1);
+    if (!clicked) {
+      if (isCorrect) {
+        setScore(score + 1);
+      }
     }
     setUserAnswers([
       ...userAnswers,
       { questionIndex: currentQuestionIndex, answerIndex, isCorrect },
     ]);
-    const nextQuestion = currentQuestionIndex + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestionIndex(nextQuestion);
-    } else {
-      setShowScore(true);
-    }
+
+    setClicked(true);
+    setSelectedAnswerIndex(answerIndex);
+    // const nextQuestion = currentQuestionIndex + 1;
+    // if (nextQuestion < questions.length) {
+    //   setCurrentQuestionIndex(nextQuestion);
+    // } else {
+    //   setShowScore(true);
+    // }
   };
 
   const goToNextQuestion = () => {
     const nextQuestion = currentQuestionIndex + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestionIndex(nextQuestion);
+      setClicked(false);
     } else {
       setShowScore(true);
     }
@@ -66,6 +76,7 @@ const Assignment = () => {
     const previousQuestion = currentQuestionIndex - 1;
     if (previousQuestion >= 0) {
       setCurrentQuestionIndex(previousQuestion);
+      setClicked(false);
     }
   };
 
@@ -98,6 +109,8 @@ const Assignment = () => {
           onAnswerClick={handleAnswerClick}
           onNextClick={goToNextQuestion}
           onPreviousClick={goToPreviousQuestion}
+          clicked={clicked}
+          selectedAnswerIndex={selectedAnswerIndex}
         />
       ) : (
         <SummaryView
@@ -118,6 +131,8 @@ const QuestionView = ({
   onAnswerClick,
   onNextClick,
   onPreviousClick,
+  clicked,
+  selectedAnswerIndex,
 }: any) => {
   return (
     <div className="p-6 bg-[#101012] shadow-md rounded-md mb-8 w-full max-w-2xl">
@@ -135,7 +150,9 @@ const QuestionView = ({
           <Button
             key={idx}
             onClick={() => onAnswerClick(answer.isCorrect, idx)}
-            className="bg-white text-black font-semibold py-2 px-4 rounded-md shadow-md hover:bg-slate-400  focus:outline-none"
+            className={`bg-white text-black font-semibold py-2 px-4 rounded-md shadow-md hover:bg-slate-400  focus:outline-none ${
+              clicked && idx === selectedAnswerIndex ? "bg-green-400" : ""
+            } `}
           >
             {answer.ansText}
           </Button>

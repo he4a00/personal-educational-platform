@@ -150,9 +150,14 @@ const QuestionView = ({
           <Button
             key={idx}
             onClick={() => onAnswerClick(answer.isCorrect, idx)}
-            className={`bg-white text-black font-semibold py-2 px-4 rounded-md shadow-md hover:bg-slate-400  focus:outline-none ${
+            className={`bg-white text-black font-semibold py-2 px-4 rounded-md shadow-md ${
               clicked && idx === selectedAnswerIndex ? "bg-green-400" : ""
             } `}
+            style={{
+              backgroundColor:
+                clicked && idx === selectedAnswerIndex ? "#4ade80" : "white",
+              color: clicked && idx === selectedAnswerIndex ? "black" : "black",
+            }}
           >
             {answer.ansText}
           </Button>
@@ -160,16 +165,16 @@ const QuestionView = ({
       </div>
       <div className="flex justify-between mt-6">
         <Button
-          onClick={onPreviousClick}
-          className="bg-gray-400 text-white font-semibold py-2 px-4 rounded-md shadow-md hover:bg-gray-500 focus:outline-none"
-        >
-          السابق
-        </Button>
-        <Button
           onClick={onNextClick}
           className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md shadow-md hover:bg-blue-600 focus:outline-none"
         >
           التالي
+        </Button>
+        <Button
+          onClick={onPreviousClick}
+          className="bg-gray-400 text-white font-semibold py-2 px-4 rounded-md shadow-md hover:bg-gray-500 focus:outline-none"
+        >
+          السابق
         </Button>
       </div>
     </div>

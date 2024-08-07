@@ -22,15 +22,41 @@ const ExamDetails = () => {
   const [dateTaken, setDateTaken] = useState(new Date());
   const [examLocked, setExamLocked] = useState(false);
   const { user }: any = useUserContext();
+  const [remainingTime, setRemainingTime] = useState<number>(0);
 
-  const initialRemainingTime = () => {
-    const savedTime = localStorage.getItem("remainingTime");
-    return savedTime ? parseInt(savedTime, 10) : 6 * 60 * 1000;
-  };
-
-  const [remainingTime, setRemainingTime] = useState(initialRemainingTime);
+  const {
+    data: examData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["examQuestions", id],
+    queryFn: async () => {
+      try {
+        const { data } = await api.get(`/exam/getExam/${id}`);
+        return data;
+      } catch (err: any) {
+        if (err.response && err.response.status === 403) {
+          setExamLocked(true);
+        }
+        throw err;
+      }
+    },
+  });
 
   useEffect(() => {
+    if (examData) {
+      const savedTime = localStorage.getItem("remainingTime");
+      const initialTime = savedTime
+        ? parseInt(savedTime, 10)
+        : examData.exam.durationInMinutes * 60 * 1000;
+      setRemainingTime(initialTime);
+      setSelectedAnswers(Array(examData.examQuestions.length).fill(null));
+    }
+  }, [examData]);
+
+  useEffect(() => {
+    if (remainingTime === 0 && !isExamFinished) return;
+
     if (remainingTime <= 0) {
       setIsExamFinished(true);
       return;
@@ -57,34 +83,9 @@ const ExamDetails = () => {
     }
   }, [isExamFinished]);
 
-  const {
-    data: examData,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["examQuestions", id],
-    queryFn: async () => {
-      try {
-        const { data } = await api.get(`/exam/getExam/${id}`);
-        return data;
-      } catch (err: any) {
-        if (err.response && err.response.status === 403) {
-          setExamLocked(true);
-        }
-        throw err;
-      }
-    },
-  });
-
   useEffect(() => {
     setDateTaken(new Date());
   }, []);
-
-  useEffect(() => {
-    if (examData) {
-      setSelectedAnswers(Array(examData.examQuestions.length).fill(null));
-    }
-  }, [examData]);
 
   if (examLocked) {
     return (
@@ -114,9 +115,7 @@ const ExamDetails = () => {
 
   const handleAnswerClick = (isCorrect: any, answerIndex: any) => {
     const updatedAnswers = [...selectedAnswers];
-    // Check if the current answer is being changed
     if (updatedAnswers[currentQuestion] !== null) {
-      // Recalculate score if the answer was changed from correct to incorrect or vice versa
       if (
         questions[currentQuestion].answers[updatedAnswers[currentQuestion]]
           .isCorrect &&
@@ -131,7 +130,6 @@ const ExamDetails = () => {
         setScore(score + 1);
       }
     } else if (isCorrect) {
-      // Add score for the first time answer is selected correctly
       setScore(score + 1);
     }
     updatedAnswers[currentQuestion] = answerIndex;
@@ -156,8 +154,8 @@ const ExamDetails = () => {
     }
   };
 
-  const minutes = Math.floor((remainingTime / 1000 / 60) % 60);
-  const seconds = Math.floor((remainingTime / 1000) % 60);
+  const minutes = Math.floor((remainingTime ?? 0) / 1000 / 60);
+  const seconds = Math.floor(((remainingTime ?? 0) / 1000) % 60);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen w-full container">

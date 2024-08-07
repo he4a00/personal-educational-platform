@@ -20,7 +20,7 @@ import { classes } from "../constants";
 import { useToast } from "@/components/ui/use-toast";
 import { ExamValidation } from "../utils/validators/examValidator";
 
-const AddExamForm = ({ student }: any) => {
+const AddExamForm = () => {
   const form = useForm({
     resolver: zodResolver(ExamValidation),
     defaultValues: {
@@ -28,6 +28,7 @@ const AddExamForm = ({ student }: any) => {
       eduyear: "",
       section: "",
       maxScore: 15,
+      durationInMinutes: 30,
     },
   });
 
@@ -116,6 +117,25 @@ const AddExamForm = ({ student }: any) => {
                   <Input
                     className="w-full border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="durationInMinutes"
+            render={({ field }) => (
+              <FormItem className="">
+                <FormLabel className="font-semibold text-gray-700">
+                  وقت الامتحان
+                </FormLabel>
+                <FormControl className="w-full">
+                  <Input
+                    className="w-full border border-gray-300 bg-white text-gray-900 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    {...field}
+                    placeholder="الوقت بالدقيقة"
                   />
                 </FormControl>
                 <FormMessage />

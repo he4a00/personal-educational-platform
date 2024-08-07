@@ -4,7 +4,14 @@ export const ExamValidation = z.object({
   title: z.string(),
   eduyear: z.string(),
   section: z.string(),
-  maxScore: z.number().default(15),
+  maxScore: z.preprocess(
+    (val) => parseInt(val as string, 10),
+    z.number().default(15)
+  ),
+  durationInMinutes: z.preprocess(
+    (val) => parseInt(val as string, 10),
+    z.number().default(30)
+  ),
 });
 
 export const QuestionsValidator = z.object({

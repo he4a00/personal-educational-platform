@@ -82,6 +82,8 @@ api.interceptors.response.use(
       } catch (refreshError) {
         console.error("Token refresh failed", refreshError);
         // Handle token refresh failure, e.g., log out user, redirect to login
+        localStorage.removeItem("user");
+        // window.location.href = "/sign-in";
         return Promise.reject(refreshError);
       }
     }

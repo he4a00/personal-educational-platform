@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import api from "../utils/api";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
 type ScoreProps = {
@@ -19,7 +18,6 @@ const SaveExamScoreButton = ({
   examId,
   onSaveSuccess,
 }: ScoreProps) => {
-  const router = useRouter();
   const { toast } = useToast();
   const { mutate: saveScore, isPending } = useMutation({
     mutationFn: async () => {
@@ -33,7 +31,6 @@ const SaveExamScoreButton = ({
 
     onSuccess: () => {
       onSaveSuccess();
-      // router.push("/");
     },
     onError: (err: any) => {
       if (err.response.status === 403) {
@@ -45,6 +42,7 @@ const SaveExamScoreButton = ({
       }
     },
   });
+
   return (
     <Button disabled={isPending} onClick={() => saveScore()}>
       تسليم

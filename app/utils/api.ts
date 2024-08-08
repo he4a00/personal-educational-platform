@@ -83,6 +83,10 @@ api.interceptors.response.use(
         console.error("Token refresh failed", refreshError);
         // Handle token refresh failure, e.g., log out user, redirect to login
         localStorage.removeItem("user");
+        alert("انتهت الجلسة الخاصة بك ، برجاء تسجيل الدخول مرة اخري");
+
+        window.location.reload();
+
         // window.location.href = "/sign-in";
         return Promise.reject(refreshError);
       }

@@ -85,9 +85,7 @@ api.interceptors.response.use(
         localStorage.removeItem("user");
         alert("انتهت الجلسة الخاصة بك ، برجاء تسجيل الدخول مرة اخري");
 
-        window.location.reload();
-
-        // window.location.href = "/sign-in";
+        window.location.href = "/sign-in";
         return Promise.reject(refreshError);
       }
     }

@@ -66,7 +66,7 @@ const Exams = () => {
                 <View className="text-blue-600 hover:text-blue-800 cursor-pointer" />
               </Link>
               <SwitchActiveButton isActive={exam?.isActive} id={exam._id} />
-              <DeleteExamButton id={exam._id} />
+              {/* `<DeleteExamButton id={exam._id} />` */}
             </div>
           </div>
         ))}

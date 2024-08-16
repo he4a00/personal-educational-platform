@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import api from "../utils/api";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { Save } from "lucide-react";
 
 type ScoreProps = {
   score: number;
@@ -44,8 +45,14 @@ const SaveExamScoreButton = ({
   });
 
   return (
-    <Button disabled={isPending} onClick={() => saveScore()}>
-      تسليم
+    <Button
+      variant="outline"
+      className="flex items-center gap-2 bg-gradient-to-r from-green-400 to-blue-500 text-white p-4 shadow-lg rounded-full hover:from-green-300 hover:to-blue-400 transition-transform transform hover:scale-110"
+      disabled={isPending}
+      onClick={() => saveScore()}
+    >
+      <Save size={20} />
+      حفظ النتيجة
     </Button>
   );
 };

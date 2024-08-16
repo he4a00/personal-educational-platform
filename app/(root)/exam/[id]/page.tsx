@@ -167,7 +167,13 @@ const ExamDetails = () => {
         ) : (
           <>
             {isExamFinished ? (
-              <div className="text-card-foreground text-xl font-bold mb-4 flex flex-col items-center gap-6">
+              <div className="relative bg-gray-800 text-white text-xl font-bold mb-4 flex flex-col items-center gap-6 p-6 rounded-lg shadow-lg">
+                <Image
+                  width={400}
+                  height={400}
+                  alt=""
+                  src="https://res.cloudinary.com/dortdlynv/image/upload/v1723810549/down_gockea.png"
+                />
                 <SaveExamScoreButton
                   score={score}
                   dateTaken={dateTaken}
@@ -175,6 +181,16 @@ const ExamDetails = () => {
                   examId={id}
                   onSaveSuccess={() => setIsScoreSaved(true)}
                 />
+                <h1 className="text-white text-sm">
+                  مع تحيات الاستاذ هاشم شكري
+                </h1>
+                {/* <div className="absolute bottom-0 right-0 m-4">
+                  <img
+                    src="/path-to-fun-icon.png"
+                    alt="Fun Icon"
+                    className="w-12 h-12 opacity-90"
+                  />
+                </div> */}
               </div>
             ) : (
               <>

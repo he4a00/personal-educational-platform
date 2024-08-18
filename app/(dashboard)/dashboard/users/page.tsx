@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import SelectSorting from "@/app/components/SelectSorting";
+import DeleteStudentButton from "@/app/components/DeleteStudentButton";
 
 const Users = () => {
   const [searchParam, setSearchParams] = useState("");
@@ -22,23 +23,17 @@ const Users = () => {
   const { data: usersData, isLoading } = useQuery({
     queryKey: ["users", searchParam, sortParam],
     queryFn: async () => {
-      let endpoint = `/users`;
-      const params = [];
-      if (searchParam) {
-        params.push(`phoneNumber=${searchParam}`);
-      }
-      if (sortParam) {
-        params.push(`eduyear=${sortParam}`);
-      }
-      const { data } = await api.get(endpoint);
+      const { data } = await api.get(
+        `/users/?phoneNumber=${searchParam}&eduyear=${sortParam}`
+      );
       return data;
     },
   });
 
   return (
     <div className="p-5">
-      <h1 className="mb-5"> عدد الطلاب: {usersData?.usersCount}</h1>
-      <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
+      <h1 className="mb-5"> عدد الطلاب: {usersData?.totalStudents}</h1>
+      <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 gap-4">
         <Input
           type="text"
           placeholder="البحث برقم الهاتف"
@@ -57,6 +52,7 @@ const Users = () => {
             <TableHead className="text-right">الصف</TableHead>
             <TableHead className="text-right">رقم الهاتف</TableHead>
             <TableHead className="text-right">رقم ولي الامر</TableHead>
+            <TableHead className="text-right"> العمليات</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -66,8 +62,8 @@ const Users = () => {
                 جاري التحميل ...
               </TableCell>
             </TableRow>
-          ) : usersData?.users?.length > 0 ? (
-            usersData.users.map((user: any) => (
+          ) : usersData?.students?.length > 0 ? (
+            usersData.students.map((user: any) => (
               <TableRow key={user._id}>
                 <TableCell className="text-right">{user.firstname}</TableCell>
                 <TableCell className="text-right">{user.lastname}</TableCell>
@@ -75,6 +71,9 @@ const Users = () => {
                 <TableCell className="text-right">{user.phoneNumber}</TableCell>
                 <TableCell className="text-right">
                   {user.parentPhoneNumber}
+                </TableCell>
+                <TableCell className="text-right">
+                  <DeleteStudentButton id={user?._id} />
                 </TableCell>
               </TableRow>
             ))
@@ -87,29 +86,6 @@ const Users = () => {
           )}
         </TableBody>
       </Table>
-      {/* <div className="mt-4 flex justify-between items-center">
-        <button
-          className="px-4 py-2 bg-gray-300 rounded"
-          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-          disabled={page === 1}
-        >
-          Previous
-        </button>
-        <span>
-          Page {page} of {Math.ceil(usersData?.usersCount / limit)}
-        </span>
-        <button
-          className="px-4 py-2 bg-gray-300 rounded"
-          onClick={() =>
-            setPage((prev) =>
-              Math.min(prev + 1, Math.ceil(usersData?.usersCount / limit))
-            )
-          }
-          disabled={page === Math.ceil(usersData?.usersCount / limit)}
-        >
-          Next
-        </button>
-      </div> */}
     </div>
   );
 };

@@ -14,11 +14,14 @@ interface SelectSortingProps {
 const SelectSorting = ({ setSortParam }: SelectSortingProps) => {
   return (
     <div>
-      <Select onValueChange={setSortParam}>
+      <Select
+        onValueChange={(value) => setSortParam(value === "all" ? "" : value)}
+      >
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="ترتيب حسب:" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="all">الكل</SelectItem>
           <SelectItem value="الصف الاول الاعدادي">
             الصف الاول الاعدادي
           </SelectItem>

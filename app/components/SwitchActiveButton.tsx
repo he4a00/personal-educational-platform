@@ -17,7 +17,6 @@ const SwitchActiveButton = ({ id, isActive }: SwitchProps) => {
       return data;
     },
     onSuccess: (data) => {
-      console.log(data);
       queryClient.invalidateQueries({ queryKey: ["exams"] });
     },
   });

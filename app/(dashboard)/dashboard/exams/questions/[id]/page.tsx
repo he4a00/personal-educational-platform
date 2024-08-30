@@ -28,11 +28,11 @@ const Exams = () => {
 
   return (
     <div>
-      <Table className="w-full">
+      <Table className="w-full table-auto">
         <TableCaption>قائمة بالأسئلة الأخيرة</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">نص السؤال</TableHead>
+            <TableHead className="text-right">نص السؤال</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -43,12 +43,13 @@ const Exams = () => {
               </TableCell>
             </TableRow>
           ) : examQuestions.length > 0 ? (
-            examQuestions.map((question: any) => (
+            examQuestions.map((question: any, idx: number) => (
               <TableRow key={question._id}>
                 <TableCell className="font-medium w-[15rem]">
+                  <h1>{idx + 1}</h1>
                   <Image
-                    width={150}
-                    height={150}
+                    width={450}
+                    height={450}
                     alt=""
                     src={question.questionText}
                   />

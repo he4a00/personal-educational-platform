@@ -65,8 +65,6 @@ const LessonsByUnit = () => {
     },
   });
 
-  console.log(classLessons);
-
   if (isLoading || isFetching) {
     return <Loader />;
   }

@@ -72,7 +72,6 @@ const AddExamAnswersForm = () => {
         (answer) => answer.answerText.trim() !== ""
       ),
     };
-    console.log("Submitting cleaned values:", cleanedValues); // Log cleaned values to verify
     addAnswers(cleanedValues);
   }
 

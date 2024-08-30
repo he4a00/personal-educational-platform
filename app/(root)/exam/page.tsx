@@ -14,6 +14,7 @@ type ExamProps = {
   title: string;
   eduyear: string;
   dateCreated: Date;
+  section: string;
   isActive: boolean;
 };
 
@@ -62,9 +63,9 @@ const Exams = () => {
                   <div className="flex flex-col gap-y-2">
                     <h3 className="text-lg font-semibold">{exam?.title}</h3>
                     <p className="text-muted-foreground">{exam?.eduyear}</p>
+                    <p className="text-muted-foreground">{exam?.section}</p>
                     <p className="text-muted-foreground">{foramtedDate}</p>
-                    {exam?.isActive ||
-                    user?.user?.classroom === exam?.eduyear ? (
+                    {exam?.isActive || user?.user?.eduyear === exam?.eduyear ? (
                       <Link className="mt-5" href={`/exam/${exam?._id}`}>
                         <Button disabled={!exam?.isActive}>دخول</Button>
                       </Link>

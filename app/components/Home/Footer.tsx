@@ -1,6 +1,6 @@
+import { classes } from "@/app/constants";
 import { Linkedin, PhoneCall } from "lucide-react";
 import Link from "next/link";
-import { classes } from "../constants";
 
 export default function Footer() {
   return (

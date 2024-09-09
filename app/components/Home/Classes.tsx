@@ -1,9 +1,9 @@
 import Image from "next/image";
-import arrowSVG from "../images/arrow.svg";
-import bag from "../images/bag.svg";
-import algebra from "../images/algebra.jpg";
 import Link from "next/link";
-import { classesInfo } from "../constants";
+import arrowSVG from "../../images/arrow.svg";
+import algebra from "../../images/algebra.jpg";
+import bag from "../../images/bag.svg";
+import { classesInfo } from "@/app/constants";
 
 const Classes = () => {
   return (

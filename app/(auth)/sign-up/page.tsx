@@ -98,7 +98,7 @@ const SignUp = () => {
                     required
                     className="w-full md:p-4 p-2 mb-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
-                    placeholder="احمد"
+                    placeholder="الاسم الاول"
                     value={firstname}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
@@ -111,7 +111,7 @@ const SignUp = () => {
                     required
                     className="w-full md:p-4 p-2 md:mb-3 mb-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
-                    placeholder="هاشم"
+                    placeholder="الاسم الاخير"
                     value={lastname}
                     onChange={(e) => setLastName(e.target.value)}
                   />
@@ -124,7 +124,7 @@ const SignUp = () => {
                     required
                     className="w-full md:p-4 mb-2 p-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
-                    placeholder="01001000101"
+                    placeholder="رقم الهاتف"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
@@ -137,7 +137,7 @@ const SignUp = () => {
                     required
                     className="w-full md:p-4 p-2 mb-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
-                    placeholder="01003030303"
+                    placeholder="رقم ولي الامر"
                     value={parentPhoneNumber}
                     onChange={(e) => setParentPhoneNumber(e.target.value)}
                   />
@@ -177,7 +177,7 @@ const SignUp = () => {
                     required
                     className="w-full md:p-4 p-2 md:mb-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
                     type="password"
-                    placeholder="******************"
+                    placeholder="كلمة السر"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />

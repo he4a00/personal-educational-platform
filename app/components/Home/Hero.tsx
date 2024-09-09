@@ -5,7 +5,7 @@ import { Book, UserRoundCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import hero from "../images/hero.png";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "@/app/context/UserContext";
 
 const Hero = () => {
   const { user }: any = useUserContext();

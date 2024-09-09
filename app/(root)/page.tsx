@@ -1,8 +1,7 @@
-import Link from "next/link";
-import Classes from "../components/Classes";
-import Hero from "../components/Hero";
-import HowItWork from "../components/HowItWork";
-import Services from "../components/Services";
+import Hero from "../components/Home/Hero";
+import Services from "../components/Home/Services";
+import Ads from "../components/Home/Ads";
+import Classes from "../components/Home/Classes";
 
 export default function Home() {
   return (
@@ -16,7 +15,7 @@ export default function Home() {
       </div>
 
       <Hero />
-      <HowItWork />
+      <Ads />
       <Services />
       <Classes />
     </main>

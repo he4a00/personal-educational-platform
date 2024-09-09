@@ -130,13 +130,17 @@ const LessonsByUnit = () => {
                     </div>
                   ) : (
                     <div className="mt-6 flex flex-col space-y-3">
-                      <Button className="w-full px-6 py-3 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-bold rounded-full shadow-lg hover:from-orange-500 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75 transform transition duration-300 hover:scale-105">
-                        شاهد الآن!
-                      </Button>
-                      <Button className="w-full px-6 py-3 bg-indigo-100 text-indigo-700 font-semibold rounded-full shadow-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-opacity-75 transition duration-300 flex items-center justify-center">
-                        <ClipboardList className="w-5 h-5 ml-2" />
-                        الواجب
-                      </Button>
+                      <Link href={`/lessons/watch/${lesson?._id}`}>
+                        <Button className="w-full px-6 py-3 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-bold rounded-full shadow-lg hover:from-orange-500 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75 transform transition duration-300 hover:scale-105">
+                          شاهد الآن!
+                        </Button>
+                      </Link>
+                      <Link href={`/lessons/assignements/${lesson?._id}`}>
+                        <Button className="w-full px-6 py-3 bg-indigo-100 text-indigo-700 font-semibold rounded-full shadow-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-opacity-75 transition duration-300 flex items-center justify-center">
+                          <ClipboardList className="w-5 h-5 ml-2" />
+                          الواجب
+                        </Button>
+                      </Link>
                     </div>
                   )}
                 </div>

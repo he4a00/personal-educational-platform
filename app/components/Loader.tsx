@@ -1,4 +1,8 @@
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
+
+import math1 from "../images/math.png";
+import math2 from "../images/number.png";
 
 export default function Loader() {
   const [progress, setProgress] = useState(0);
@@ -215,32 +219,20 @@ export default function Loader() {
       </div>
 
       {/* Simplified loading animation */}
-      <div className="relative z-10 flex items-center justify-center bg-white bg-opacity-80 p-8 rounded-full shadow-lg">
-        <div className="relative w-32 h-32">
-          {/* Circular progress bar */}
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-            <circle
-              className="text-blue-200"
-              strokeWidth="8"
-              stroke="currentColor"
-              fill="transparent"
-              r="46"
-              cx="50"
-              cy="50"
+      <div className="relative z-10 flex items-center justify-center  bg-opacity-80 p-8 rounded-full">
+        <div className="border border-gray-200 p-2 rounded-md shadow-lg shadow-orange-300">
+          <div className="flex items-end gap-1 justify-center">
+            <span className="text-6xl font-semibold dark:text-white">الأس</span>
+            <Image src={math1} width={30} height={30} alt="" />
+            <Image
+              src={math2}
+              width={30}
+              height={30}
+              alt=""
+              className="animate-bounce"
             />
-            <circle
-              className="text-blue-500 transition-all duration-300 ease-in-out"
-              strokeWidth="8"
-              strokeDasharray={289}
-              strokeDashoffset={289 - (progress / 100) * 289}
-              strokeLinecap="round"
-              stroke="currentColor"
-              fill="transparent"
-              r="46"
-              cx="50"
-              cy="50"
-            />
-          </svg>
+            <span className="text-6xl font-semibold text-orange-500">تاذ</span>
+          </div>
         </div>
       </div>
     </div>

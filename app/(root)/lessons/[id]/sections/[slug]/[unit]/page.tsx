@@ -135,12 +135,14 @@ const LessonsByUnit = () => {
                           شاهد الآن!
                         </Button>
                       </Link>
-                      <Link href={`/lessons/assignements/${lesson?._id}`}>
-                        <Button className="w-full px-6 py-3 bg-indigo-100 text-indigo-700 font-semibold rounded-full shadow-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-opacity-75 transition duration-300 flex items-center justify-center">
-                          <ClipboardList className="w-5 h-5 ml-2" />
-                          الواجب
-                        </Button>
-                      </Link>
+                      {lesson?.assignment && (
+                        <Link href={`/lessons/assignements/${lesson?._id}`}>
+                          <Button className="w-full px-6 py-3 bg-indigo-100 text-indigo-700 font-semibold rounded-full shadow-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-opacity-75 transition duration-300 flex items-center justify-center">
+                            <ClipboardList className="w-5 h-5 ml-2" />
+                            الواجب
+                          </Button>
+                        </Link>
+                      )}
                     </div>
                   )}
                 </div>

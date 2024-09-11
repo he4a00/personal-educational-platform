@@ -113,7 +113,7 @@ const Navbar = () => {
                 })}
                 {user?.user?.type === "teacher" && (
                   <>
-                    {renderLinkButton({
+                    {/* {renderLinkButton({
                       href: "/add-lesson",
                       text: "اضافة درس",
                       IconComponent: UserPlus,
@@ -122,7 +122,7 @@ const Navbar = () => {
                       href: "/unlock-lesson",
                       text: "فتح درس",
                       IconComponent: UserPlus,
-                    })}
+                    })} */}
                     {renderLinkButton({
                       href: "/dashboard",
                       text: " لوحة التحكم",
@@ -158,7 +158,7 @@ const Navbar = () => {
             })}
             {user?.user?.type === "teacher" && (
               <>
-                {renderLinkButton({
+                {/* {renderLinkButton({
                   href: "/add-lesson",
                   text: "اضافة درس",
                   IconComponent: UserPlus,
@@ -167,7 +167,7 @@ const Navbar = () => {
                   href: "/unlock-lesson",
                   text: "فتح درس",
                   IconComponent: UserPlus,
-                })}
+                })} */}
                 {renderLinkButton({
                   href: "/dashboard",
                   text: " لوحة التحكم",

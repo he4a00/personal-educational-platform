@@ -46,13 +46,13 @@ const SaveExamScoreButton = ({
 
   return (
     <Button
-      variant="outline"
-      className="flex items-center gap-2 bg-gradient-to-r from-green-400 to-blue-500 text-white p-4 shadow-lg rounded-full hover:from-green-300 hover:to-blue-400 transition-transform transform hover:scale-110"
+      // variant="outline"
+      className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 flex items-center justify-center mb-4"
       disabled={isPending}
       onClick={() => saveScore()}
     >
-      <Save size={20} />
       حفظ النتيجة
+      <Save size={20} className="mr-2" />
     </Button>
   );
 };

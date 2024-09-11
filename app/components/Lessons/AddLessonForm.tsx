@@ -17,9 +17,9 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import api from "../utils/api";
-import { classes } from "../constants";
 import { useToast } from "@/components/ui/use-toast";
+import { classes } from "@/app/constants";
+import api from "@/app/utils/api";
 
 const AddLessonForm = ({ student }: any) => {
   const form = useForm({

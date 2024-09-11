@@ -9,6 +9,8 @@ import SaveExamScoreButton from "@/app/components/SaveExamScoreButton";
 import { useUserContext } from "@/app/context/UserContext";
 import Link from "next/link";
 import Image from "next/image";
+import { Lock } from "lucide-react";
+import ExamFinalScore from "@/app/components/ExamFinalScore";
 
 const ExamDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -161,37 +163,62 @@ const ExamDetails = () => {
     <div className="flex flex-col items-center justify-center h-screen w-full container">
       <div className="bg-[#101012] p-12 w-full rounded-lg shadow-lg h-auto flex justify-center flex-col">
         {isScoreSaved ? (
-          <div className="text-card-foreground text-xl font-bold mb-4 flex flex-col items-center gap-6 text-white">
-            نتيجتك: {score} / {questions.length}
-          </div>
+          <ExamFinalScore score={score} total={questions.length} />
         ) : (
           <>
+            {/* Start the save exam score action */}
             {isExamFinished ? (
-              <div className="relative bg-gray-800 text-white text-xl font-bold mb-4 flex flex-col items-center gap-6 p-6 rounded-lg shadow-lg">
-                <Image
-                  width={400}
-                  height={400}
-                  alt=""
-                  src="https://res.cloudinary.com/dortdlynv/image/upload/v1723810549/down_gockea.png"
-                />
-                <SaveExamScoreButton
-                  score={score}
-                  dateTaken={dateTaken}
-                  userId={user?.user?._id}
-                  examId={id}
-                  onSaveSuccess={() => setIsScoreSaved(true)}
-                />
-                <h1 className="text-white text-sm">
-                  مع تحيات الاستاذ هاشم شكري
-                </h1>
-                {/* <div className="absolute bottom-0 right-0 m-4">
-                  <img
-                    src="/path-to-fun-icon.png"
-                    alt="Fun Icon"
-                    className="w-12 h-12 opacity-90"
-                  />
-                </div> */}
-              </div>
+              <>
+                <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden">
+                  <div className="p-4 sm:p-6">
+                    <div className="flex items-center mb-4 gap-10">
+                      {/* Illustration placeholder */}
+                      <div className="w-1/3 mr-4">
+                        <Image
+                          width={400}
+                          height={400}
+                          alt=""
+                          src="https://res.cloudinary.com/dortdlynv/image/upload/v1723810549/down_gockea.png"
+                        />
+                      </div>
+                      <div className="w-2/3">
+                        <h1 className="text-2xl font-bold text-white mb-2">
+                          نتيجة الامتحان الخاص بك
+                        </h1>
+                        <div className="bg-gray-800 rounded p-2 mb-2">
+                          <p className="text-lg text-white">
+                            لقد حققت {score} اجابات صحيحة من اصل{" "}
+                            {questions.length} اسألة
+                          </p>
+                          <p className="text-sm text-green-400">
+                            عمل جيد! استمرار ممتاز.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Save Result button */}
+                    <SaveExamScoreButton
+                      score={score}
+                      dateTaken={dateTaken}
+                      userId={user?.user?._id}
+                      examId={id}
+                      onSaveSuccess={() => setIsScoreSaved(true)}
+                    />
+
+                    {/* Teacher's message */}
+                    <div className="bg-gray-800 rounded p-3 mb-4">
+                      <p className="text-sm text-white italic">
+                        واصل العمل الجاد ، الحل المستمر سر النجاح في عالم
+                        الرياضيات
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        مع التمنيات بالنجاح المستمر ، الأستاذ هاشم شكري
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 <div className="flex justify-between items-center mb-4">

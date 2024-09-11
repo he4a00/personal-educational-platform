@@ -39,7 +39,6 @@ export default function Loader() {
           </div>
         ))}
       </div>
-
       {/* Grid lines */}
       <div className="absolute inset-0 flex flex-col">
         {[...Array(10)].map((_, i) => (
@@ -51,7 +50,6 @@ export default function Loader() {
           <div key={i} className="flex-1 border-r border-blue-200" />
         ))}
       </div>
-
       {/* Math-related images */}
       <div className="absolute inset-0 opacity-5">
         {/* Calculator */}
@@ -217,7 +215,6 @@ export default function Loader() {
           <path d="M20 16V14" stroke="currentColor" strokeWidth="0.5" />
         </svg>
       </div>
-
       {/* Simplified loading animation */}
       <div className="relative z-10 flex items-center justify-center  bg-opacity-80 p-8 rounded-full">
         <div className="border border-gray-200 p-2 rounded-md shadow-lg shadow-orange-300">

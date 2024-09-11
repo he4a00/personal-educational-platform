@@ -1,7 +1,6 @@
 "use client";
 
 import AddExamAnswersForm from "@/app/components/AddExamAnswersForm";
-import AddLessonForm from "@/app/components/AddLessonForm";
 import { useUserContext } from "@/app/context/UserContext";
 import { redirect } from "next/navigation";
 

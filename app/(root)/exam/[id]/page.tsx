@@ -171,18 +171,18 @@ const ExamDetails = () => {
               <>
                 <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden">
                   <div className="p-4 sm:p-6">
-                    <div className="flex items-center mb-4 gap-10">
+                    <div className="flex items-center mb-4 gap-10 flex-col">
                       {/* Illustration placeholder */}
-                      <div className="w-1/3 mr-4">
+                      <div className="mr-4 w-full flex justify-center">
                         <Image
                           width={400}
-                          height={400}
+                          height={800}
                           alt=""
                           src="https://res.cloudinary.com/dortdlynv/image/upload/v1723810549/down_gockea.png"
                         />
                       </div>
                       <div className="w-2/3">
-                        <h1 className="text-2xl font-bold text-white mb-2">
+                        <h1 className="text-2xl font-bold text-white mb-2 text-center">
                           نتيجة الامتحان الخاص بك
                         </h1>
                         <div className="bg-gray-800 rounded p-2 mb-2">

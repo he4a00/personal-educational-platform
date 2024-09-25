@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useUserContext } from "../context/UserContext";
 import logo from "../images/logo.png";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 interface ButtonProps {
   href: string;
@@ -28,6 +29,16 @@ interface ButtonProps {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout, user }: any = useUserContext();
+  const [changed, setChanged] = useState<Boolean>();
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setChanged(true);
+    if (changed) {
+      setIsOpen(false);
+    }
+  }, [changed, pathname]);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -114,15 +125,15 @@ const Navbar = () => {
                 {user?.user?.type === "teacher" && (
                   <>
                     {/* {renderLinkButton({
-                      href: "/add-lesson",
-                      text: "اضافة درس",
-                      IconComponent: UserPlus,
-                    })}
-                    {renderLinkButton({
-                      href: "/unlock-lesson",
-                      text: "فتح درس",
-                      IconComponent: UserPlus,
-                    })} */}
+                    href: "/add-lesson",
+                    text: "اضافة درس",
+                    IconComponent: UserPlus,
+                  })}
+                  {renderLinkButton({
+                    href: "/unlock-lesson",
+                    text: "فتح درس",
+                    IconComponent: UserPlus,
+                  })} */}
                     {renderLinkButton({
                       href: "/dashboard",
                       text: " لوحة التحكم",
@@ -159,15 +170,15 @@ const Navbar = () => {
             {user?.user?.type === "teacher" && (
               <>
                 {/* {renderLinkButton({
-                  href: "/add-lesson",
-                  text: "اضافة درس",
-                  IconComponent: UserPlus,
-                })}
-                {renderLinkButton({
-                  href: "/unlock-lesson",
-                  text: "فتح درس",
-                  IconComponent: UserPlus,
-                })} */}
+                href: "/add-lesson",
+                text: "اضافة درس",
+                IconComponent: UserPlus,
+              })}
+              {renderLinkButton({
+                href: "/unlock-lesson",
+                text: "فتح درس",
+                IconComponent: UserPlus,
+              })} */}
                 {renderLinkButton({
                   href: "/dashboard",
                   text: " لوحة التحكم",

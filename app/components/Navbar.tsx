@@ -41,7 +41,6 @@ const Navbar = () => {
   };
 
   const loggedIn = !!user;
-
   const renderLinkButton = ({
     href,
     text,

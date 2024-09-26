@@ -29,16 +29,12 @@ interface ButtonProps {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout, user }: any = useUserContext();
-  const [changed, setChanged] = useState<Boolean>();
 
   const pathname = usePathname();
 
   useEffect(() => {
-    setChanged(true);
-    if (changed) {
-      setIsOpen(false);
-    }
-  }, [changed, pathname]);
+    setIsOpen(false);
+  }, [pathname]);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -124,16 +120,6 @@ const Navbar = () => {
                 })}
                 {user?.user?.type === "teacher" && (
                   <>
-                    {/* {renderLinkButton({
-                    href: "/add-lesson",
-                    text: "اضافة درس",
-                    IconComponent: UserPlus,
-                  })}
-                  {renderLinkButton({
-                    href: "/unlock-lesson",
-                    text: "فتح درس",
-                    IconComponent: UserPlus,
-                  })} */}
                     {renderLinkButton({
                       href: "/dashboard",
                       text: " لوحة التحكم",
@@ -169,16 +155,6 @@ const Navbar = () => {
             })}
             {user?.user?.type === "teacher" && (
               <>
-                {/* {renderLinkButton({
-                href: "/add-lesson",
-                text: "اضافة درس",
-                IconComponent: UserPlus,
-              })}
-              {renderLinkButton({
-                href: "/unlock-lesson",
-                text: "فتح درس",
-                IconComponent: UserPlus,
-              })} */}
                 {renderLinkButton({
                   href: "/dashboard",
                   text: " لوحة التحكم",
